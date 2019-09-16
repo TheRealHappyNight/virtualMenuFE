@@ -1,0 +1,31 @@
+<head>
+  <title>Categories</title>
+</head>
+
+<body>
+  <mat-sidenav-container class="SideNavContainer">
+
+    <mat-sidenav mode="side" opened>
+      <mat-action-list>
+        <mat-list-item *ngFor="let category of categories"
+                       (click)="onSelectCategory(category)">
+          <h5>
+            {{category.name}}
+          </h5>
+        </mat-list-item>
+      </mat-action-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <mat-action-list *ngIf="selectedCategory" class="SideNavMainContent">
+        <mat-list-item *ngFor="let product of products"
+                       [title]="product.name"
+                       (click)="onSelectProduct(product)">
+          <h6>
+            {{product.id + " " + product.name}}
+          </h6>
+        </mat-list-item>
+      </mat-action-list>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</body>
