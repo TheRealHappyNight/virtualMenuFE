@@ -7,4 +7,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'virtualMenuFE';
+
+  enterMenu(): void {
+
+  }
+
+  enterMainPage(): void {
+
+  }
+
+  enterShoppingCart(): void {
+
+  }
 }

@@ -3,6 +3,23 @@
 </head>
 
 <body>
-  <h1>{{title}}</h1>
-  <app-category></app-category>
+  <mat-toolbar color="primary" class="toolbar">
+    <button mat-stroked-button
+            id="menuButton"
+            (click)="enterMenu()">
+    dfh
+    </button>
+
+    <span id="title"
+          (click)="enterMainPage()">
+      {{title}}
+    </span>
+
+    <button mat-icon-button
+            id="shoppingCartButton"
+            (click)="enterShoppingCart()">
+    dfh
+    </button>
+  </mat-toolbar>
+
 </body>

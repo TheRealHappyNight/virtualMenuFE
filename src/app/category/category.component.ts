@@ -34,7 +34,7 @@ export class CategoryComponent implements OnInit {
   }
 
   getCategories(): void {
-    this.categoryService.getCategories('sdfg').subscribe(categories => {
+    this.categoryService.getCategories('abc-123').subscribe(categories => {
       this.categories = categories;
     });
   }

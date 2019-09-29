@@ -9,7 +9,7 @@ import {Product} from './product';
 })
 export class CategoryService {
 
-  configUrl = 'http://192.168.31.178:8080';
+  configUrl = 'http://192.168.1.213:8080';
 
   constructor(private httpClient: HttpClient) { }
 
