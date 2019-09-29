@@ -5,13 +5,15 @@ import { AppComponent } from './app.component';
 import { CategoryComponent } from './category/category.component';
 import { RouterModule } from '@angular/router';
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCheckboxModule, MatListModule, MatSidenavModule, MatToolbarModule} from '@angular/material';
+import {MatButtonModule, MatCardModule, MatCheckboxModule, MatListModule, MatSidenavModule, MatToolbarModule} from '@angular/material';
 import {HttpClientModule} from '@angular/common/http';
+import { ToolbarComponent } from './toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CategoryComponent
+    CategoryComponent,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,
@@ -26,6 +28,7 @@ import {HttpClientModule} from '@angular/common/http';
     MatListModule,
     MatSidenavModule,
     MatToolbarModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

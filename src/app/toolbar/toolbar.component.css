@@ -1,0 +1,19 @@
+
+.toolbar{
+
+}
+
+#menuButton{
+  float: left;
+  width: 10%;
+  padding: 5%;
+}
+
+#title{
+  text-align: center;
+}
+
+#shoppingCartButton{
+  float: right;
+  width: 10%;
+}
