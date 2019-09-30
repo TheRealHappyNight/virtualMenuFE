@@ -7,11 +7,13 @@ import { RouterModule } from '@angular/router';
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule, MatListModule, MatSidenavModule, MatToolbarModule} from '@angular/material';
 import {HttpClientModule} from '@angular/common/http';
+import { ToolbarComponent } from './toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CategoryComponent
+    CategoryComponent,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,
