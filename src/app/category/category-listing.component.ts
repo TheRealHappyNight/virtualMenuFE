@@ -6,10 +6,10 @@ import {CategoryService} from '../services/category.service';
 
 @Component({
   selector: 'app-category',
-  templateUrl: './category.component.html',
-  styleUrls: ['./category.component.css']
+  templateUrl: './category-listing.component.html',
+  styleUrls: ['./category-listing.component.css']
 })
-export class CategoryComponent implements OnInit {
+export class CategoryListingComponent implements OnInit {
 
   categories: Category[] = [];
   products: Product[];
