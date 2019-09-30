@@ -1,5 +1,6 @@
 <div *ngIf="categories.length > 0">
-  <mat-card *ngFor="let category of categories">
+  <mat-card *ngFor="let category of categories"
+            (click)="onSelectCategory(category)">
     <img mat-card-image
          *ngIf="category.picturePath"
          src="{{category.picturePath}}"

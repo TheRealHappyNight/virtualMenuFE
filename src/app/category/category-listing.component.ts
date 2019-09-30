@@ -23,14 +23,8 @@ export class CategoryListingComponent implements OnInit {
   }
 
   onSelectCategory(category: Category): void {
-    console.log('selected category' + category.name + '\n');
+    console.log('selected category ' + category.name + '\n');
     this.selectedCategory = category;
-    this.getProducts();
-  }
-
-  onSelectProduct(product: Product): void {
-    console.log('selected product' + product.name + '\n');
-    // Route to product details page
   }
 
   getCategories(): void {
@@ -44,5 +38,4 @@ export class CategoryListingComponent implements OnInit {
       this.products = products;
     });
   }
-
 }
