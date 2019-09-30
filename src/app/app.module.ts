@@ -1,26 +1,25 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppComponent } from './app.component';
-import { CategoryComponent } from './category/category.component';
-import { RouterModule } from '@angular/router';
+import {AppComponent} from './app.component';
+import {CategoryComponent} from './category/category.component';
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCardModule, MatCheckboxModule, MatListModule, MatSidenavModule, MatToolbarModule} from '@angular/material';
 import {HttpClientModule} from '@angular/common/http';
-import { ToolbarComponent } from './toolbar/toolbar.component';
+import {ToolbarComponent} from './toolbar/toolbar.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AdminPageComponent} from './admin-page/admin-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CategoryComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    AdminPageComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot([
-      {path: '', component: CategoryComponent},
-    ]),
     BrowserAnimationsModule,
     NoopAnimationsModule,
     MatButtonModule,
@@ -29,8 +28,10 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
     MatSidenavModule,
     MatToolbarModule,
     MatCardModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
