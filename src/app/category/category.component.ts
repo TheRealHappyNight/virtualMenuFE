@@ -11,7 +11,7 @@ import {CategoryService} from '../category.service';
 })
 export class CategoryComponent implements OnInit {
 
-  categories: Category[];
+  categories: Category[] = [];
   products: Product[];
 
   selectedCategory: Category;

@@ -1,14 +1,18 @@
 <mat-toolbar color="primary" class="toolbar">
   <button mat-stroked-button
-          id="menuButton">
-    dfh
+          id="menuButton"
+          (click)="enterMenu()">
+    MENU
   </button>
 
-  <span id="title">
+  <span id="title"
+        (click)="enterMainPage()">
+      {{title}}
     </span>
 
   <button mat-icon-button
-          id="shoppingCartButton">
-    dfh
+          id="shoppingCartButton"
+          (click)="enterShoppingCart()">
+    SC
   </button>
 </mat-toolbar>
