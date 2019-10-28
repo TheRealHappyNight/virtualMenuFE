@@ -1,11 +1,11 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
-import {CategoryComponent} from './category/category.component';
 import {AdminPageComponent} from './admin-page/admin-page.component';
+import {CategoryListingComponent} from './category/category-listing.component';
 
 const appRoutes: Routes = [
-  {path: '', component: CategoryComponent},
+  {path: '', component: CategoryListingComponent},
   {path: 'admin', component: AdminPageComponent},
 ];
 
@@ -13,10 +13,7 @@ const appRoutes: Routes = [
   declarations: [],
   imports: [
     CommonModule,
-    RouterModule.forRoot(
-      appRoutes,
-      {enableTracing: true}
-    )
+    RouterModule.forRoot(appRoutes)
   ],
   exports: [
     RouterModule

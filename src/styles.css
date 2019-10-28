@@ -14,3 +14,18 @@ body {
   font-size: 8pt;
   float: right;
 }
+
+.centerElement{
+  display: block;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  margin-bottom: 0.5%;
+}
+.floatRight {
+  float: right;
+}
+.floatLeft{
+  float: left;
+}

@@ -1,1 +1,11 @@
-<p>admin-page works!</p>
+<app-loading-spinner *ngIf="products.length < 1" [isLoading]="isLoading"></app-loading-spinner>
+<div *ngIf="!addFlag">
+  <div *ngFor="let product of products">
+    <app-product [product]="product"></app-product>
+  </div>
+  <button mat-mini-fab (click)="changeAddFlag(true)" class="floatRight">+</button>
+</div>
+<div *ngIf="addFlag">
+  mue
+</div>
+

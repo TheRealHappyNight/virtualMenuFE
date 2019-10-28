@@ -6,10 +6,10 @@ import {CategoryService} from '../services/category.service';
 
 @Component({
   selector: 'app-category',
-  templateUrl: './category.component.html',
-  styleUrls: ['./category.component.css']
+  templateUrl: './category-listing.component.html',
+  styleUrls: ['./category-listing.component.css']
 })
-export class CategoryComponent implements OnInit {
+export class CategoryListingComponent implements OnInit {
 
   categories: Category[] = [];
   products: Product[];
@@ -23,14 +23,8 @@ export class CategoryComponent implements OnInit {
   }
 
   onSelectCategory(category: Category): void {
-    console.log('selected category' + category.name + '\n');
+    console.log('selected category ' + category.name + '\n');
     this.selectedCategory = category;
-    this.getProducts();
-  }
-
-  onSelectProduct(product: Product): void {
-    console.log('selected product' + product.name + '\n');
-    // Route to product details page
   }
 
   getCategories(): void {
@@ -44,5 +38,4 @@ export class CategoryComponent implements OnInit {
       this.products = products;
     });
   }
-
 }
