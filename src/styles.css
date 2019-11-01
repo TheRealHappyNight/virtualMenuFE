@@ -15,7 +15,7 @@ body {
   float: right;
 }
 
-.centerElement{
+.centerElement {
   display: block;
   text-align: center;
   margin-left: auto;
@@ -23,9 +23,24 @@ body {
   width: 60%;
   margin-bottom: 0.5%;
 }
+
+.absoluteCenter {
+  display: block;
+  text-align: center;
+  margin: auto;
+  width: 60%;
+  height: 60%;
+}
+
 .floatRight {
   float: right;
 }
-.floatLeft{
+
+.floatLeft {
   float: left;
 }
+
+.bottomPadding {
+  padding-bottom: 3%;
+}
+

@@ -1,0 +1,14 @@
+.products {
+  /*display: flex;*/
+  /*padding: 0;*/
+  /*margin: 0;*/
+  /*display: -webkit-box;*/
+  /*display: -moz-box;*/
+  /*display: -ms-flexbox;*/
+  /*display: -webkit-flex;*/
+
+  /*flex-direction: row;*/
+  /*flex-wrap: wrap;*/
+  /*justify-content: flex-start;*/
+  width: 30%;
+}

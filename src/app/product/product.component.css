@@ -1,0 +1,11 @@
+.example-card {
+  max-width: 30%;
+}
+
+.outOfStock {
+  opacity: 0.3;
+}
+
+.activeProduct {
+
+}

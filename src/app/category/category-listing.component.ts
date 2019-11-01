@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Category } from '../model/category';
 import {Product} from '../model/product';
 import {CategoryService} from '../services/category.service';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'app-category',
@@ -28,7 +29,7 @@ export class CategoryListingComponent implements OnInit {
   }
 
   getCategories(): void {
-    this.categoryService.getCategories('abc-123').subscribe(categories => {
+    this.categoryService.getCategories(environment.testRestaurant).subscribe(categories => {
       this.categories = categories;
     });
   }
