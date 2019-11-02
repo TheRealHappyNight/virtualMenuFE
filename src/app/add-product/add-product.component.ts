@@ -1,4 +1,4 @@
-import {Component, Inject, Injector, OnInit} from '@angular/core';
+import {Component, Inject, Injector, Input, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {Product} from '../model/product';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
@@ -9,6 +9,7 @@ import {CategoryService} from '../services/category.service';
 import {environment} from '../../environments/environment';
 import {map, startWith} from 'rxjs/operators';
 import {Observable} from 'rxjs';
+import {ProductDTO} from '../DTO/ProductDTO';
 
 @Component({
   selector: 'app-add-product',
@@ -16,13 +17,14 @@ import {Observable} from 'rxjs';
   styleUrls: ['./add-product.component.css']
 })
 export class AddProductComponent implements OnInit {
+  isExisting = false;
   stateCtrl = new FormControl();
   addProductFormGroup: FormGroup;
   categories: Category[] = [];
   filteredCategories: Observable<Category[]>;
 
   constructor(public dialogRef: MatDialogRef<AddProductComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: Product,
+              @Inject(MAT_DIALOG_DATA) public data: ProductDTO,
               private fb: FormBuilder,
               private injector: Injector,
               private productService: ProductService,
@@ -70,6 +72,18 @@ export class AddProductComponent implements OnInit {
         this.dialogRef.close(item);
       });
     }
+  }
+
+  editProduct() {
+    const formProduct = {
+      price: this.addProductFormGroup.get('price').value,
+      description: this.addProductFormGroup.get('description').value,
+      name: this.addProductFormGroup.get('name').value
+    };
+    const product = new Product(null, formProduct.name, true, formProduct.description, formProduct.price, this.stateCtrl.value.id);
+    this.productService.editProduct(product).subscribe(item => {
+      this.dialogRef.close(item);
+    });
   }
 
   private _filterCategories(value: any): Category[] {

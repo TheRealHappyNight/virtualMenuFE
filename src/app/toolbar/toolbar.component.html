@@ -15,4 +15,10 @@
           (click)="enterShoppingCart()">
     SC
   </button>
+
+  <button *ngIf="tokenStorage.getToken()"
+          id = "logout"
+          (click)="logout()">
+    Log Out
+  </button>
 </mat-toolbar>

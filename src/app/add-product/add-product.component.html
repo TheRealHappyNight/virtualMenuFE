@@ -22,7 +22,13 @@
     </mat-autocomplete>
   </mat-form-field>
 
-  <button mat-raised-button type="submit" color="primary" class="centerForms"
+  <button *ngIf="!data.isEditing"
+          mat-raised-button type="submit" color="primary" class="centerForms"
           (click)="addProduct()">Add
+  </button>
+
+  <button *ngIf="data.isEditing"
+    mat-raised-button type="submit" color="primary" class="centerForms"
+          (click)="editProduct()">Save Changes
   </button>
 </form>

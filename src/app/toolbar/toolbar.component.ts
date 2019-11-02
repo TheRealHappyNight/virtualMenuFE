@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {TokenStorageService} from '../auth/token-storage.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class ToolbarComponent implements OnInit {
   title: string;
 
-  constructor() { }
+  constructor(private tokenStorage: TokenStorageService) { }
 
   ngOnInit() {
     this.title = 'Virtual menu';
@@ -21,5 +22,9 @@ export class ToolbarComponent implements OnInit {
   }
 
   enterShoppingCart(): void {
+  }
+
+  logout(): void {
+    this.tokenStorage.signOut();
   }
 }
