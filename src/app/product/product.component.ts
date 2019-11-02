@@ -2,13 +2,15 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Product} from '../model/product';
 import {ProductService} from '../services/product.service';
 import {ImageService} from '../services/image.service';
-import {SafeUrl} from '@angular/platform-browser';
+import {BaseCartItem, CartService} from 'ng-shopping-cart';
+import {DomSanitizer} from '@angular/platform-browser';
 
 class ImageSnippet {
   pending = false;
   status = 'init';
 
-  constructor(public src: string, public file: File) {}
+  constructor(public src: string, public file: File) {
+  }
 }
 
 @Component({
@@ -20,15 +22,32 @@ export class ProductComponent implements OnInit {
   @Input() product: Product;
   @Input() isAdmin: boolean;
   selectedFile: ImageSnippet;
-  image: SafeUrl;
 
   constructor(private productService: ProductService,
-              private imageService: ImageService) { }
+              private imageService: ImageService,
+              private cartService: CartService<BaseCartItem>,
+              private sanitizer: DomSanitizer) {
+  }
 
   ngOnInit() {
     this.imageService.getImage(this.product).subscribe(image => {
-      this.image = image;
+      this.product.image = image;
     });
+  }
+
+  private createCartItem() {
+    const item = new BaseCartItem();
+    item.setId(this.product.id);
+    item.setName(this.product.name);
+    item.setPrice(this.product.price);
+    if (this.cartService.getItem(this.product.id)) {
+      item.setQuantity(this.cartService.getItem(this.product.id).quantity + 1);
+    } else {
+      item.setQuantity(1);
+    }
+    // item.setImage(this.product.image);
+    // item.setImage('https://images.app.goo.gl/VraqpnF97Wvu5RYp6');
+    return item;
   }
 
   switchState() {

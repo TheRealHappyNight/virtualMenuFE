@@ -1,4 +1,5 @@
 import {Category} from './category';
+import {SafeUrl} from '@angular/platform-browser';
 
 export class Product {
   id: number;
@@ -7,6 +8,8 @@ export class Product {
   description: string;
   price: number;
   category?: Category;
+  image: SafeUrl;
+
 
   constructor(id: number, name: string, active: boolean, description: string, price: number, category: Category) {
     this.id = id;

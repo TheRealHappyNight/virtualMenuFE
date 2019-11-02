@@ -5,7 +5,10 @@
       <mat-card-title>{{product.name}}</mat-card-title>
     </mat-card-header>
       <mat-card-content>
-        <app-picture *ngIf="image" [image]="image"></app-picture>
+        <app-picture *ngIf="product.image" [image]="product.image"></app-picture>
+        <add-to-cart *ngIf="product.image" [item]="createCartItem()" [custom]="true">
+          <button mat-raised-button>Add product</button>
+        </add-to-cart>
       </mat-card-content>
     <mat-card-actions *ngIf="isAdmin">
       <button mat-button *ngIf="product.active" (click)="switchState()">OutOfStock</button>
