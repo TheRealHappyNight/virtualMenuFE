@@ -24,7 +24,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {ToolbarComponent} from './toolbar/toolbar.component';
 import {AppRoutingModule} from './app-routing.module';
 import {AdminPageComponent} from './admin-page/admin-page.component';
-import {CategoryListingComponent} from './category/category-listing.component';
+import {CategoryListingComponent} from './category-listing/category-listing.component';
 import {ProductComponent} from './product/product.component';
 import {LoadingSpinnerComponent} from './loading-spinner/loading-spinner.component';
 import {LoginComponent} from './auth/login/login.component';
@@ -34,6 +34,8 @@ import {httpInterceptorProviders} from './auth/auth-interceptor';
 import {AddProductComponent} from './add-product/add-product.component';
 import {AuthErrorHandler} from './auth/AuthErrorHandler';
 import {FlexModule} from '@angular/flex-layout';
+import { ProductListingComponent } from './product-listing/product-listing.component';
+import { PictureComponent } from './picture/picture.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import {FlexModule} from '@angular/flex-layout';
     LoadingSpinnerComponent,
     LoginComponent,
     RegisterComponent,
-    AddProductComponent
+    AddProductComponent,
+    ProductListingComponent,
+    PictureComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,6 @@
 <app-loading-spinner *ngIf="products.length < 1 && currentUserInfo.token" [isLoading]="isLoading"></app-loading-spinner>
 <div *ngIf="!authService.isTokenExpired(); else loggedOut">
-  <div *ngIf="!addFlag" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+  <div *ngIf="!addFlag">
     <div *ngFor="let product of products" class="products">
       <app-product [product]="product" [isAdmin]="true"></app-product>
     </div>
