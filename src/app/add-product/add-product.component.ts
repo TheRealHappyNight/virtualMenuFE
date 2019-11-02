@@ -1,4 +1,4 @@
-import {Component, Inject, Injector, Input, OnInit} from '@angular/core';
+import {Component, Inject, Injector, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {Product} from '../model/product';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
@@ -17,11 +17,12 @@ import {ProductDTO} from '../DTO/ProductDTO';
   styleUrls: ['./add-product.component.css']
 })
 export class AddProductComponent implements OnInit {
-  isExisting = false;
   stateCtrl = new FormControl();
   addProductFormGroup: FormGroup;
   categories: Category[] = [];
   filteredCategories: Observable<Category[]>;
+
+  selectedCategory: Category;
 
   constructor(public dialogRef: MatDialogRef<AddProductComponent>,
               @Inject(MAT_DIALOG_DATA) public data: ProductDTO,
@@ -37,22 +38,43 @@ export class AddProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // this.selectedCategory = this.data.product.category;
+    this.selectedCategory = new Category(1, 'mancare de carnati', 'Este foarte buna');
+    console.log(this.selectedCategory.name);
+    console.log('ceva name ' + this.data.product.name);
+    console.log('ceva price ' + this.data.product.price);
+    console.log('ceva desc ' + this.data.product.description);
+    console.log('ceva act ' + this.data.product.active);
+    console.log('ceva id ' + this.data.product.id);
+    console.log('ceva cat ' + this.data.product.category);
+
     this.categoryService.getCategories(environment.testRestaurant).subscribe(categories => {
       this.categories = categories;
     });
-    this.addProductFormGroup = this.fb.group({
-      name: new FormControl('', [Validators.required]),
-      price: new FormControl('', [Validators.required]),
-      description: new FormControl('', [Validators.required]),
-    });
+
+    if (this.data.isEditing) {
+      this.addProductFormGroup = this.fb.group({
+        name: new FormControl(this.data.product.name, [Validators.required]),
+        price: new FormControl(this.data.product.price, [Validators.required]),
+        description: new FormControl(this.data.product.description, [Validators.required]),
+      });
+    } else {
+      this.addProductFormGroup = this.fb.group({
+        name: new FormControl('', [Validators.required]),
+        price: new FormControl('', [Validators.required]),
+        description: new FormControl('', [Validators.required]),
+      });
+    }
   }
 
   get price() {
     return this.addProductFormGroup.get('price');
   }
+
   get name() {
     return this.addProductFormGroup.get('name');
   }
+
   get description() {
     return this.addProductFormGroup.get('description');
   }
@@ -80,7 +102,24 @@ export class AddProductComponent implements OnInit {
       description: this.addProductFormGroup.get('description').value,
       name: this.addProductFormGroup.get('name').value
     };
-    const product = new Product(null, formProduct.name, true, formProduct.description, formProduct.price, this.stateCtrl.value.id);
+
+    if (formProduct.name === '') {
+      formProduct.name = this.data.product.name;
+    }
+
+    if (formProduct.description === '') {
+      formProduct.description = this.data.product.description;
+    }
+
+    if (formProduct.price === '') {
+      formProduct.price = this.data.product.price;
+    }
+
+    const product = new Product(this.data.product.id,
+      formProduct.name, true,
+      formProduct.description,
+      formProduct.price,
+      this.stateCtrl.value.id);
     this.productService.editProduct(product).subscribe(item => {
       this.dialogRef.close(item);
     });
@@ -92,5 +131,9 @@ export class AddProductComponent implements OnInit {
 
   displayFn(category): string {
     return category ? category.name : category;
+  }
+
+  public selectCategory(category: Category) {
+    this.selectedCategory = category;
   }
 }

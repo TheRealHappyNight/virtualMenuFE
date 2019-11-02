@@ -53,12 +53,14 @@ export class AdminPageComponent implements OnInit {
     });
   }
 
-  editProduct(): void {
-    productDto : ProductDTO;
-
+  editProduct(product: Product): void {
+    const productDto: ProductDTO = new ProductDTO();
+    productDto.isEditing = true;
+    console.log('eva in edit cat ' + product.category);
+    productDto.product = product;
     const dialogRef = this.dialog.open(AddProductComponent, {
       width: '400px',
-      data: { isEditing : true }
+      data: productDto
     });
 
     dialogRef.afterClosed().subscribe(result => {
