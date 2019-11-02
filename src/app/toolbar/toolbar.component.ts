@@ -4,9 +4,6 @@ import {Router} from '@angular/router';
 import {CustomCartService} from '../services/custom-cart.service';
 import {AppUtilities} from '../services/AppUtilities';
 
-class CustomCartService {
-}
-
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
