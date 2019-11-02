@@ -34,8 +34,11 @@ import {httpInterceptorProviders} from './auth/auth-interceptor';
 import {AddProductComponent} from './add-product/add-product.component';
 import {AuthErrorHandler} from './auth/AuthErrorHandler';
 import {FlexModule} from '@angular/flex-layout';
-import { ProductListingComponent } from './product-listing/product-listing.component';
-import { PictureComponent } from './picture/picture.component';
+import {ProductListingComponent} from './product-listing/product-listing.component';
+import {PictureComponent} from './picture/picture.component';
+import {ShoppingCartModule} from 'ng-shopping-cart';
+import {CartListingComponent} from './cart-listing/cart-listing.component';
+import {CartViewComponent} from './cart-view/cart-view.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +52,9 @@ import { PictureComponent } from './picture/picture.component';
     RegisterComponent,
     AddProductComponent,
     ProductListingComponent,
-    PictureComponent
+    PictureComponent,
+    CartListingComponent,
+    CartViewComponent
   ],
   imports: [
     BrowserModule,
@@ -79,6 +84,13 @@ import { PictureComponent } from './picture/picture.component';
     MatSnackBarModule,
     MatAutocompleteModule,
     FlexModule,
+    ShoppingCartModule.forRoot({
+      serviceType: 'localStorage',
+      serviceOptions: {
+        storageKey: 'NgShoppingCart',
+        clearOnError: true
+      }
+    }),
   ],
   providers: [httpInterceptorProviders,
     {

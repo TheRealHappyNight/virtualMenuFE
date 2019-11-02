@@ -6,6 +6,8 @@ import {CategoryListingComponent} from './category-listing/category-listing.comp
 import {LoginComponent} from './auth/login/login.component';
 import {RegisterComponent} from './auth/register/register.component';
 import {ProductListingComponent} from './product-listing/product-listing.component';
+import {CartViewComponent} from 'ng-shopping-cart';
+import {CartListingComponent} from './cart-listing/cart-listing.component';
 
 const appRoutes: Routes = [
   {path: '', component: CategoryListingComponent},
@@ -13,6 +15,7 @@ const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'signup', component: RegisterComponent},
   {path: 'category/:id', component: ProductListingComponent},
+  {path: 'cart', component: CartListingComponent},
 ];
 
 @NgModule({
