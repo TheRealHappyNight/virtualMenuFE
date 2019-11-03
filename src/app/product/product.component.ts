@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Product} from '../model/product';
 import {ProductService} from '../services/product.service';
 import {ImageService} from '../services/image.service';
@@ -24,6 +24,7 @@ export class ProductComponent implements OnInit {
   @Input() product: Product;
   @Input() isAdmin: boolean;
   selectedFile: ImageSnippet;
+  @Output() productEdited: EventEmitter<Product> = new EventEmitter<Product>();
 
   constructor(private productService: ProductService,
               private imageService: ImageService,
@@ -98,10 +99,12 @@ export class ProductComponent implements OnInit {
       data: productDto
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
+    dialogRef.afterClosed().subscribe(editedProduct => {
+        if (editedProduct) {
+          this.productEdited.emit(editedProduct);
+        }
       }
-    });
+    );
   }
 
   selectImage() {

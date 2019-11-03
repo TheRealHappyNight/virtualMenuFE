@@ -98,11 +98,11 @@ import { OrderingTableComponent } from './ordering-table/ordering-table.componen
     }),
     MatTabsModule,
   ],
-  providers: [httpInterceptorProviders,
-    {
-      provide: ErrorHandler,
-      useClass: AuthErrorHandler
-    }],
+  // providers: [httpInterceptorProviders,
+  //   {
+  //     provide: ErrorHandler,
+  //     useClass: AuthErrorHandler
+  //   }],
   bootstrap: [AppComponent],
   entryComponents: [AddProductComponent]
 })
