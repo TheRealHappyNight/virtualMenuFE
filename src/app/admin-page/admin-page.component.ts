@@ -31,7 +31,7 @@ export class AdminPageComponent implements OnInit {
       username: this.token.getUsername()
     };
     if (this.currentUserInfo.token) {
-      this.productService.getAllProducts('abc-123').subscribe(products => {
+      this.productService.getAllProducts(localStorage.getItem('restaurantUUID')).subscribe(products => {
         this.products = products;
         this.isLoading = false;
       });
