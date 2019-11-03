@@ -11,10 +11,16 @@
         </add-to-cart>
       </mat-card-content>
     <mat-card-actions *ngIf="isAdmin">
+      <button mat-raised-button id="editProduct"
+              (click)="editProduct(product)">
+        Edit
+      </button>
       <button mat-button *ngIf="product.active" (click)="switchState()">OutOfStock</button>
       <button mat-button *ngIf="!product.active" (click)="switchState()">InStock</button>
-      <input mat-button
-             #imageInput
+      <button mat-button (click)="selectImage()">Choose image</button>
+      <input #imageInput
+             id="imageInput"
+             style="visibility: hidden"
              type="file"
              accept="image/*"
              (change)="processFile(imageInput)">

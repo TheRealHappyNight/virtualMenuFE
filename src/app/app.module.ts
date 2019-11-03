@@ -14,7 +14,7 @@ import {
   MatInputModule,
   MatListModule,
   MatMenuModule,
-  MatProgressSpinnerModule,
+  MatProgressSpinnerModule, MatSelectModule,
   MatSidenavModule,
   MatSnackBarModule,
   MatTableModule,
@@ -23,7 +23,7 @@ import {
 import {HttpClientModule} from '@angular/common/http';
 import {ToolbarComponent} from './toolbar/toolbar.component';
 import {AppRoutingModule} from './app-routing.module';
-import {AdminPageComponent} from './admin-page/admin-page.component';
+import {AdminPageProductsComponent} from './admin-page/products/admin-page-products.component';
 import {CategoryListingComponent} from './category-listing/category-listing.component';
 import {ProductComponent} from './product/product.component';
 import {LoadingSpinnerComponent} from './loading-spinner/loading-spinner.component';
@@ -45,7 +45,7 @@ import {CartViewComponent} from './cart-view/cart-view.component';
     AppComponent,
     CategoryListingComponent,
     ToolbarComponent,
-    AdminPageComponent,
+    AdminPageProductsComponent,
     ProductComponent,
     LoadingSpinnerComponent,
     LoginComponent,
@@ -54,7 +54,7 @@ import {CartViewComponent} from './cart-view/cart-view.component';
     ProductListingComponent,
     PictureComponent,
     CartListingComponent,
-    CartViewComponent
+    CartViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -91,6 +91,7 @@ import {CartViewComponent} from './cart-view/cart-view.component';
         clearOnError: true
       }
     }),
+    MatSelectModule,
   ],
   providers: [httpInterceptorProviders,
     {

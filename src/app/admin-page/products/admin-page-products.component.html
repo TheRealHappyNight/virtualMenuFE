@@ -2,10 +2,6 @@
 <div *ngIf="!authService.isTokenExpired(); else loggedOut">
     <div *ngFor="let product of products" class="products">
       <app-product [product]="product" [isAdmin]="true"></app-product>
-      <button mat-raised-button id="editProduct"
-              (click)="editProduct(product)">
-            Edit
-      </button>
     </div>
 </div>
 

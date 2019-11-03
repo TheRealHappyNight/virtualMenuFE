@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
-import {AdminPageComponent} from './admin-page/admin-page.component';
+import {AdminPageProductsComponent} from './admin-page/products/admin-page-products.component';
 import {CategoryListingComponent} from './category-listing/category-listing.component';
 import {LoginComponent} from './auth/login/login.component';
 import {RegisterComponent} from './auth/register/register.component';
@@ -11,7 +11,7 @@ import {CartListingComponent} from './cart-listing/cart-listing.component';
 
 const appRoutes: Routes = [
   {path: '', component: CategoryListingComponent},
-  {path: 'admin', component: AdminPageComponent},
+  {path: 'admin', component: AdminPageProductsComponent},
   {path: 'login', component: LoginComponent},
   {path: 'signup', component: RegisterComponent},
   {path: 'category/:id', component: ProductListingComponent},

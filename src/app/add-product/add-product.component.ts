@@ -38,15 +38,7 @@ export class AddProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.selectedCategory = this.data.product.category;
-    this.selectedCategory = new Category(1, 'mancare de carnati', 'Este foarte buna');
-    console.log(this.selectedCategory.name);
-    console.log('ceva name ' + this.data.product.name);
-    console.log('ceva price ' + this.data.product.price);
-    console.log('ceva desc ' + this.data.product.description);
-    console.log('ceva act ' + this.data.product.active);
-    console.log('ceva id ' + this.data.product.id);
-    console.log('ceva cat ' + this.data.product.category);
+    this.selectedCategory = this.data.product.category;
 
     this.categoryService.getCategories(environment.testRestaurant).subscribe(categories => {
       this.categories = categories;
@@ -57,6 +49,7 @@ export class AddProductComponent implements OnInit {
         name: new FormControl(this.data.product.name, [Validators.required]),
         price: new FormControl(this.data.product.price, [Validators.required]),
         description: new FormControl(this.data.product.description, [Validators.required]),
+        category: this.data.product.category,
       });
     } else {
       this.addProductFormGroup = this.fb.group({
@@ -119,7 +112,7 @@ export class AddProductComponent implements OnInit {
       formProduct.name, true,
       formProduct.description,
       formProduct.price,
-      this.stateCtrl.value.id);
+      this.stateCtrl.value ? (this.stateCtrl.value.id) : null);
     this.productService.editProduct(product).subscribe(item => {
       this.dialogRef.close(item);
     });

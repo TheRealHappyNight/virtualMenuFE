@@ -3,7 +3,9 @@ import {Product} from '../model/product';
 import {ProductService} from '../services/product.service';
 import {ImageService} from '../services/image.service';
 import {BaseCartItem, CartService} from 'ng-shopping-cart';
-import {DomSanitizer} from '@angular/platform-browser';
+import {ProductDTO} from '../DTO/ProductDTO';
+import {AddProductComponent} from '../add-product/add-product.component';
+import {MatDialog} from '@angular/material';
 
 class ImageSnippet {
   pending = false;
@@ -26,7 +28,7 @@ export class ProductComponent implements OnInit {
   constructor(private productService: ProductService,
               private imageService: ImageService,
               private cartService: CartService<BaseCartItem>,
-              private sanitizer: DomSanitizer) {
+              private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -45,8 +47,6 @@ export class ProductComponent implements OnInit {
     } else {
       item.setQuantity(1);
     }
-    // item.setImage(this.product.image);
-    // item.setImage('https://images.app.goo.gl/VraqpnF97Wvu5RYp6');
     return item;
   }
 
@@ -87,5 +87,24 @@ export class ProductComponent implements OnInit {
     });
 
     reader.readAsDataURL(file);
+  }
+
+  editProduct(product: Product): void {
+    const productDto: ProductDTO = new ProductDTO();
+    productDto.isEditing = true;
+    productDto.product = product;
+    const dialogRef = this.dialog.open(AddProductComponent, {
+      width: '400px',
+      data: productDto
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+      }
+    });
+  }
+
+  selectImage() {
+    document.getElementById('imageInput').click();
   }
 }
