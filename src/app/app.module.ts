@@ -14,16 +14,16 @@ import {
   MatInputModule,
   MatListModule,
   MatMenuModule,
-  MatProgressSpinnerModule, MatSelectModule,
+  MatProgressSpinnerModule,
   MatSidenavModule,
   MatSnackBarModule,
-  MatTableModule,
+  MatTableModule, MatTabsModule,
   MatToolbarModule
 } from '@angular/material';
 import {HttpClientModule} from '@angular/common/http';
 import {ToolbarComponent} from './toolbar/toolbar.component';
 import {AppRoutingModule} from './app-routing.module';
-import {AdminPageProductsComponent} from './admin-page/products/admin-page-products.component';
+import {AdminPageComponent} from './admin-page/admin-page.component';
 import {CategoryListingComponent} from './category-listing/category-listing.component';
 import {ProductComponent} from './product/product.component';
 import {LoadingSpinnerComponent} from './loading-spinner/loading-spinner.component';
@@ -45,7 +45,7 @@ import {CartViewComponent} from './cart-view/cart-view.component';
     AppComponent,
     CategoryListingComponent,
     ToolbarComponent,
-    AdminPageProductsComponent,
+    AdminPageComponent,
     ProductComponent,
     LoadingSpinnerComponent,
     LoginComponent,
@@ -54,7 +54,7 @@ import {CartViewComponent} from './cart-view/cart-view.component';
     ProductListingComponent,
     PictureComponent,
     CartListingComponent,
-    CartViewComponent,
+    CartViewComponent
   ],
   imports: [
     BrowserModule,
@@ -80,6 +80,7 @@ import {CartViewComponent} from './cart-view/cart-view.component';
     MatIconModule,
     MatProgressSpinnerModule,
     ReactiveFormsModule,
+    MatTableModule,
     BrowserAnimationsModule,
     MatSnackBarModule,
     MatAutocompleteModule,
@@ -91,7 +92,7 @@ import {CartViewComponent} from './cart-view/cart-view.component';
         clearOnError: true
       }
     }),
-    MatSelectModule,
+    MatTabsModule,
   ],
   providers: [httpInterceptorProviders,
     {
