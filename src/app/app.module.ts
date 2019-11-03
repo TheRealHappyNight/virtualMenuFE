@@ -39,6 +39,8 @@ import {PictureComponent} from './picture/picture.component';
 import {ShoppingCartModule} from 'ng-shopping-cart';
 import {CartListingComponent} from './cart-listing/cart-listing.component';
 import {CartViewComponent} from './cart-view/cart-view.component';
+import { TableListingComponent } from './table-listing/table-listing.component';
+import { OrderingTableComponent } from './ordering-table/ordering-table.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,9 @@ import {CartViewComponent} from './cart-view/cart-view.component';
     ProductListingComponent,
     PictureComponent,
     CartListingComponent,
-    CartViewComponent
+    CartViewComponent,
+    TableListingComponent,
+    OrderingTableComponent
   ],
   imports: [
     BrowserModule,

@@ -37,10 +37,6 @@ export class AdminPageComponent implements OnInit {
     }
   }
 
-  changeAddFlag(b: boolean) {
-    this.addFlag = b;
-  }
-
   openDialog(): void {
     const dialogRef = this.dialog.open(AddProductComponent, {
       width: '400px',
