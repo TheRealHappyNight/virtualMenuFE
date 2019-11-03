@@ -1,0 +1,31 @@
+<div *ngIf="isSignedUp">
+  <h3 (click)="goToLogin()" class="hoverLink">Your registration is successful. Please login!</h3>
+</div>
+
+<mat-card *ngIf="!isSignedUp" class="registerElement">
+  <form [formGroup]="registerFormGroup">
+    <mat-form-field class="registerElement">
+      <input matInput formControlName="name" placeholder="Name">
+      <mat-error *ngIf="name.invalid">The name is required!</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="registerElement">
+      <input matInput formControlName="username" placeholder="Username">
+      <mat-error *ngIf="username.invalid">The username is required!</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="registerElement">
+      <input matInput formControlName="email" placeholder="Email">
+      <mat-error *ngIf="email.invalid">{{getEmailErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="registerElement pwElement">
+      <input matInput type="password" formControlName="password" placeholder="Password">
+      <mat-error *ngIf="password.invalid">The password is required!</mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button type="submit" color="primary" class="registerElement"
+            (click)="register()">Register
+    </button>
+  </form>
+</mat-card>
