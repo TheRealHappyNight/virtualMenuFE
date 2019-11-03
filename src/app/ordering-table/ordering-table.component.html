@@ -1,1 +1,6 @@
-<p>{{table.tableNumber}}</p>
+<mat-card [ngClass]="table.reserved? 'reserved': 'available'">
+  <h4>Table No.: {{table.tableNumber}}</h4>
+  <h4>Seats: {{table.seats}}</h4>
+  <h4>URL: <a [href]="tableURL">{{tableURL}}</a></h4>
+  <qrcode [qrdata]="tableURL" [size]="256" [level]="'M'"></qrcode>
+</mat-card>

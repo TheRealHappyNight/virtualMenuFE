@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, ParamMap, Router} from '@angular/router';
-import {switchMap} from 'rxjs/operators';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import {CategoryService} from '../services/category.service';
-import {Category} from '../model/category';
 import {Product} from '../model/product';
 import {BaseCartItem, CartService} from 'ng-shopping-cart';
 
@@ -17,15 +15,15 @@ export class ProductListingComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private router: Router,
               private categoryService: CategoryService,
-              private cartService: CartService<BaseCartItem>) { }
+              private cartService: CartService<BaseCartItem>) {
+  }
 
   ngOnInit() {
-    // this.cartService.setLocaleFormat('4217:display:digitsInfo:ro');
     this.getProducts(this.route.snapshot.paramMap.get('id'));
   }
 
   getProducts(categoryId: string): void {
-    this.categoryService.getProductFromCategory(+categoryId).subscribe( products => {
+    this.categoryService.getProductFromCategory(+categoryId).subscribe(products => {
       this.products = products;
     });
   }

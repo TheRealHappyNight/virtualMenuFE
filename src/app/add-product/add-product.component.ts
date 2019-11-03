@@ -35,7 +35,7 @@ export class AddProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.categoryService.getCategories(environment.testRestaurant).subscribe(categories => {
+    this.categoryService.getCategories(localStorage.getItem('restaurantUUID')).subscribe(categories => {
       this.categories = categories;
     });
     this.addProductFormGroup = this.fb.group({

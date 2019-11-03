@@ -41,6 +41,8 @@ import {CartListingComponent} from './cart-listing/cart-listing.component';
 import {CartViewComponent} from './cart-view/cart-view.component';
 import { TableListingComponent } from './table-listing/table-listing.component';
 import { OrderingTableComponent } from './ordering-table/ordering-table.component';
+import { EntryComponent } from './entry/entry.component';
+import {QRCodeModule} from 'angularx-qrcode';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,8 @@ import { OrderingTableComponent } from './ordering-table/ordering-table.componen
     CartListingComponent,
     CartViewComponent,
     TableListingComponent,
-    OrderingTableComponent
+    OrderingTableComponent,
+    EntryComponent
   ],
   imports: [
     BrowserModule,
@@ -89,6 +92,7 @@ import { OrderingTableComponent } from './ordering-table/ordering-table.componen
     MatSnackBarModule,
     MatAutocompleteModule,
     FlexModule,
+    QRCodeModule,
     ShoppingCartModule.forRoot({
       serviceType: 'localStorage',
       serviceOptions: {
@@ -98,11 +102,11 @@ import { OrderingTableComponent } from './ordering-table/ordering-table.componen
     }),
     MatTabsModule,
   ],
-  providers: [httpInterceptorProviders,
-    {
-      provide: ErrorHandler,
-      useClass: AuthErrorHandler
-    }],
+  // providers: [httpInterceptorProviders,
+  //   {
+  //     provide: ErrorHandler,
+  //     useClass: AuthErrorHandler
+  //   }],
   bootstrap: [AppComponent],
   entryComponents: [AddProductComponent]
 })

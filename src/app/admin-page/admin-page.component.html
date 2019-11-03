@@ -1,4 +1,4 @@
-<mat-tab-group>
+<mat-tab-group [(selectedIndex)]="selectedTab">
   <mat-tab label="Products">
     <app-loading-spinner *ngIf="products.length < 1 && currentUserInfo.token"
                          [isLoading]="isLoading"></app-loading-spinner>
@@ -17,3 +17,4 @@
   <mat-tab label="Categories">not yet</mat-tab>
   <mat-tab label="Tables"><app-table-listing></app-table-listing></mat-tab>
 </mat-tab-group>
+

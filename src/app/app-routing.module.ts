@@ -2,15 +2,15 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import {AdminPageComponent} from './admin-page/admin-page.component';
-import {CategoryListingComponent} from './category-listing/category-listing.component';
 import {LoginComponent} from './auth/login/login.component';
 import {RegisterComponent} from './auth/register/register.component';
 import {ProductListingComponent} from './product-listing/product-listing.component';
-import {CartViewComponent} from 'ng-shopping-cart';
 import {CartListingComponent} from './cart-listing/cart-listing.component';
+import {EntryComponent} from './entry/entry.component';
+import {QRCodeModule} from 'angularx-qrcode';
 
 const appRoutes: Routes = [
-  {path: '', component: CategoryListingComponent},
+  {path: 'restaurant/:uuid/:id', component: EntryComponent},
   {path: 'admin', component: AdminPageComponent},
   {path: 'login', component: LoginComponent},
   {path: 'signup', component: RegisterComponent},
@@ -22,6 +22,7 @@ const appRoutes: Routes = [
   declarations: [],
   imports: [
     CommonModule,
+    QRCodeModule,
     RouterModule.forRoot(appRoutes)
   ],
   exports: [

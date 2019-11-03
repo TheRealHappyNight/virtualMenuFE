@@ -14,7 +14,7 @@ export class TableListingComponent implements OnInit {
   constructor(private tableService: TableService) { }
 
   ngOnInit() {
-    this.tableService.getTables(environment.testRestaurant).subscribe(tables => {
+    this.tableService.getTables(localStorage.getItem('restaurantUUID')).subscribe(tables => {
       this.tables = tables;
     });
   }

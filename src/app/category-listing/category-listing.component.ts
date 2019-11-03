@@ -21,7 +21,7 @@ export class CategoryListingComponent implements OnInit {
   }
 
   getCategories(): void {
-    this.categoryService.getCategories(environment.testRestaurant).subscribe(categories => {
+    this.categoryService.getCategories(localStorage.getItem('restaurantUUID')).subscribe(categories => {
       this.categories = categories;
     });
   }
