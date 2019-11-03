@@ -1,9 +1,3 @@
-<app-loading-spinner *ngIf="products.length < 1 && currentUserInfo.token" [isLoading]="isLoading"></app-loading-spinner>
-<div *ngIf="!authService.isTokenExpired(); else loggedOut">
-    <div *ngFor="let product of products" class="products">
-      <app-product [product]="product" [isAdmin]="true"></app-product>
-    </div>
-</div>
 <mat-tab-group>
   <mat-tab label="Products">
     <app-loading-spinner *ngIf="products.length < 1 && currentUserInfo.token"
@@ -13,7 +7,6 @@
           <app-product [product]="product" [isAdmin]="true"></app-product>
         </div>
         <button mat-mini-fab (click)="openDialog()" class="floatRight">+</button>
-      </div>
     </div>
 
     <ng-template #loggedOut>
@@ -22,6 +15,5 @@
     </ng-template>
   </mat-tab>
   <mat-tab label="Categories">not yet</mat-tab>
-  <mat-tab label="Tables">not yet</mat-tab>
+  <mat-tab label="Tables"><app-table-listing></app-table-listing></mat-tab>
 </mat-tab-group>
-A

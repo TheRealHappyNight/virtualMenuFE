@@ -1,20 +1,20 @@
 import {Component, OnInit} from '@angular/core';
-import {ProductService} from '../../services/product.service';
-import {Product} from '../../model/product';
-import {TokenStorageService} from '../../auth/token-storage.service';
+import {ProductService} from '../services/product.service';
+import {Product} from '../model/product';
+import {TokenStorageService} from '../auth/token-storage.service';
 import {MatDialog} from '@angular/material';
-import {AddProductComponent} from '../../add-product/add-product.component';
-import {AuthService} from '../../auth/auth.service';
-import {ProductDTO} from '../../DTO/ProductDTO';
+import {AddProductComponent} from '../add-product/add-product.component';
+import {AuthService} from '../auth/auth.service';
 
 @Component({
   selector: 'app-admin-page',
-  templateUrl: './admin-page-products.component.html',
-  styleUrls: ['./admin-page-products.component.css']
+  templateUrl: './admin-page.component.html',
+  styleUrls: ['./admin-page.component.css']
 })
-export class AdminPageProductsComponent implements OnInit {
+export class AdminPageComponent implements OnInit {
   currentUserInfo: any;
   products: Product[] = [];
+  addFlag = false;
   isLoading = true;
 
   constructor(private productService: ProductService,
@@ -35,5 +35,16 @@ export class AdminPageProductsComponent implements OnInit {
         this.isLoading = false;
       });
     }
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(AddProductComponent, {
+      width: '400px',
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.products.push(result);
+    });
   }
 }
