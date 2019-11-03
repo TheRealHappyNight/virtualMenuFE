@@ -17,7 +17,7 @@ import {
   MatProgressSpinnerModule,
   MatSidenavModule,
   MatSnackBarModule,
-  MatTableModule,
+  MatTableModule, MatTabsModule,
   MatToolbarModule
 } from '@angular/material';
 import {HttpClientModule} from '@angular/common/http';
@@ -80,6 +80,7 @@ import {CartViewComponent} from './cart-view/cart-view.component';
     MatIconModule,
     MatProgressSpinnerModule,
     ReactiveFormsModule,
+    MatTableModule,
     BrowserAnimationsModule,
     MatSnackBarModule,
     MatAutocompleteModule,
@@ -91,6 +92,7 @@ import {CartViewComponent} from './cart-view/cart-view.component';
         clearOnError: true
       }
     }),
+    MatTabsModule,
   ],
   providers: [httpInterceptorProviders,
     {

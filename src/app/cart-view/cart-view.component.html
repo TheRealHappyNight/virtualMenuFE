@@ -25,3 +25,6 @@
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
 </table>
+<button mat-raised-button
+        style="float: right; margin-top: 0.75%"
+        (click)="saveOrder()">Checkout</button>
