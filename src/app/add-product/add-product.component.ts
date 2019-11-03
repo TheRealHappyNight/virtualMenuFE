@@ -9,6 +9,7 @@ import {CategoryService} from '../services/category.service';
 import {environment} from '../../environments/environment';
 import {map, startWith} from 'rxjs/operators';
 import {Observable} from 'rxjs';
+import {ProductDTO} from '../DTO/ProductDTO';
 
 @Component({
   selector: 'app-add-product',
@@ -24,7 +25,7 @@ export class AddProductComponent implements OnInit {
   selectedCategory: Category;
 
   constructor(public dialogRef: MatDialogRef<AddProductComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: Product,
+              @Inject(MAT_DIALOG_DATA) public data: ProductDTO,
               private fb: FormBuilder,
               private injector: Injector,
               private productService: ProductService,
@@ -37,9 +38,7 @@ export class AddProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.categoryService.getCategories(localStorage.getItem('restaurantUUID')).subscribe(categories => {
     this.selectedCategory = this.data.product.category;
-
     this.categoryService.getCategories(environment.testRestaurant).subscribe(categories => {
       this.categories = categories;
     });

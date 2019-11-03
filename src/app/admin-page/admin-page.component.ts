@@ -5,6 +5,7 @@ import {TokenStorageService} from '../auth/token-storage.service';
 import {MatDialog} from '@angular/material';
 import {AddProductComponent} from '../add-product/add-product.component';
 import {AuthService} from '../auth/auth.service';
+import {ProductDTO} from '../DTO/ProductDTO';
 
 @Component({
   selector: 'app-admin-page',
@@ -44,10 +45,12 @@ export class AdminPageComponent implements OnInit {
     this.products.slice(0);
   }
 
-  openDialog(): void {
+  addProduct(): void {
+    const product = new ProductDTO();
+    product.isEditing = false;
     const dialogRef = this.dialog.open(AddProductComponent, {
       width: '400px',
-      data: {}
+      data: product
     });
 
     dialogRef.afterClosed().subscribe(result => {

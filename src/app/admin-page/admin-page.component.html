@@ -1,37 +1,23 @@
-<mat-tab-group [(selectedIndex)]="selectedTab">
-  <mat-tab label="Products">
-    <app-loading-spinner *ngIf="products.length < 1 && currentUserInfo.token"
-                         [isLoading]="isLoading"></app-loading-spinner>
-    <div *ngIf="!authService.isTokenExpired(); else loggedOut">
-        <div *ngFor='let product of products' class="products">
-          <app-product (productEdited)="receiveMessage($event)" [product]="product" [isAdmin]="true"></app-product>
-        </div>
-        <button mat-mini-fab (click)="openDialog()" class="floatRight">+</button>
-    </div>
+<div *ngIf="!authService.isTokenExpired(); else loggedOut">
+  <mat-tab-group [(selectedIndex)]="selectedTab">
+    <mat-tab label="Products">
+      <app-loading-spinner *ngIf="products.length < 1 && currentUserInfo.token"
+                           [isLoading]="isLoading"></app-loading-spinner>
+      <div *ngFor='let product of products' class="products">
+        <app-product (productEdited)="receiveMessage($event)" [product]="product" [isAdmin]="true"></app-product>
+      </div>
+      <button mat-mini-fab (click)="addProduct()" class="floatRight">+</button>
+    </mat-tab>
+    <mat-tab label="Categories">Not working</mat-tab>
+    <mat-tab label="Tables">
+      <app-table-listing></app-table-listing>
+    </mat-tab>
 
-    <ng-template #loggedOut>
-      <h3>Please login.</h3>
-      <a mat-raised-button href="login" color="accent">Login</a>
-    </ng-template>
-  </mat-tab>
-  <mat-tab label="Categories">
-    <app-loading-spinner *ngIf="products.length < 1 && currentUserInfo.token"
-                                                   [isLoading]="isLoading"></app-loading-spinner>
+  </mat-tab-group>
+</div>
 
-    <ng-template #loggedOut>
-      <h3>Please login.</h3>
-      <a mat-raised-button href="login" color="accent">Login</a>
-    </ng-template>
-  </mat-tab>
-  <mat-tab label="Tables"><app-table-listing></app-table-listing>
-    <app-loading-spinner *ngIf="products.length < 1 && currentUserInfo.token"
-                         [isLoading]="isLoading"></app-loading-spinner>
-
-    <ng-template #loggedOut>
-      <h3>Please login.</h3>
-      <a mat-raised-button href="login" color="accent">Login</a>
-    </ng-template>
-  </mat-tab>
-
-</mat-tab-group>
+<ng-template #loggedOut>
+  <h3>Please login.</h3>
+  <a mat-raised-button href="login" color="accent">Login</a>
+</ng-template>
 
