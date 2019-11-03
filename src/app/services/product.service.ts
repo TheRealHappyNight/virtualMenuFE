@@ -23,4 +23,8 @@ export class ProductService {
   addProduct(product: Product) {
     return this.httpClient.post<Product>(environment.backendUrl + '/product', product);
   }
+
+  editProduct(product: Product) {
+    return this.httpClient.put<Product>(environment.backendUrl + '/product', product);
+  }
 }

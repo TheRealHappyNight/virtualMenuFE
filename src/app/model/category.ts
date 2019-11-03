@@ -3,4 +3,11 @@ export class Category {
   name: string;
   description: string;
   picturePath: string;
+
+
+  constructor(id: number, name: string, description: string) {
+    this.id = id;
+    this.name = name;
+    this.description = description;
+  }
 }

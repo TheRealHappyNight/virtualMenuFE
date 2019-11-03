@@ -13,16 +13,23 @@
   </mat-form-field>
 
   <mat-form-field class="centerForms" *ngIf="categories.length > 0">
-    <input matInput placeholder="Choose a category" aria-label="Category" [matAutocomplete]="auto" [formControl]="stateCtrl">
+    <p *ngIf="selectedCategory">Current: {{selectedCategory.name}}</p>
+    <input type="text" matInput placeholder="Choose a category" aria-label="Category" [matAutocomplete]="auto" [formControl]="stateCtrl">
     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
-      <mat-option *ngFor="let category of filteredCategories | async" [value]="category">
+      <mat-option *ngFor="let category of filteredCategories | async" [value]="category" (onSelectionChange)="selectCategory(category)">
         <span>{{category.name}}</span> |
         <small>{{category.description}}</small>
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
 
-  <button mat-raised-button type="submit" color="primary" class="centerForms"
+  <button *ngIf="!data.isEditing"
+          mat-raised-button type="submit" color="primary" class="centerForms"
           (click)="addProduct()">Add
+  </button>
+
+  <button *ngIf="data.isEditing"
+    mat-raised-button type="submit" color="primary" class="centerForms"
+          (click)="editProduct()">Save Changes
   </button>
 </form>

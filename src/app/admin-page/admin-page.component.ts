@@ -14,7 +14,6 @@ import {AuthService} from '../auth/auth.service';
 export class AdminPageComponent implements OnInit {
   currentUserInfo: any;
   products: Product[] = [];
-  addFlag = false;
   isLoading = true;
   selectedTab = 2;
 
@@ -33,9 +32,16 @@ export class AdminPageComponent implements OnInit {
     if (this.currentUserInfo.token) {
       this.productService.getAllProducts(localStorage.getItem('restaurantUUID')).subscribe(products => {
         this.products = products;
+        this.products.sort((a, b) => a.name.localeCompare(b.name));
         this.isLoading = false;
       });
     }
+  }
+
+  receiveMessage($event) {
+    this.products.splice(this.products.indexOf($event), 1);
+    this.products.push($event);
+    this.products.slice(0);
   }
 
   openDialog(): void {
@@ -45,7 +51,9 @@ export class AdminPageComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.products.push(result);
+      if (result) {
+        this.products.push(result);
+      }
     });
   }
 }

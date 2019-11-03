@@ -17,4 +17,10 @@
           (click)="enterShoppingCart()">
     View cart: {{displayPrice()}}
   </button>
+
+  <button mat-button *ngIf="tokenStorage.getToken()"
+          id = "logout"
+          (click)="logout()">
+    Log Out
+  </button>
 </mat-toolbar>

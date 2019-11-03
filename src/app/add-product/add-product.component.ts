@@ -21,6 +21,8 @@ export class AddProductComponent implements OnInit {
   categories: Category[] = [];
   filteredCategories: Observable<Category[]>;
 
+  selectedCategory: Category;
+
   constructor(public dialogRef: MatDialogRef<AddProductComponent>,
               @Inject(MAT_DIALOG_DATA) public data: Product,
               private fb: FormBuilder,
@@ -36,21 +38,36 @@ export class AddProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.categoryService.getCategories(localStorage.getItem('restaurantUUID')).subscribe(categories => {
+    this.selectedCategory = this.data.product.category;
+
+    this.categoryService.getCategories(environment.testRestaurant).subscribe(categories => {
       this.categories = categories;
     });
-    this.addProductFormGroup = this.fb.group({
-      name: new FormControl('', [Validators.required]),
-      price: new FormControl('', [Validators.required]),
-      description: new FormControl('', [Validators.required]),
-    });
+
+    if (this.data.isEditing) {
+      this.addProductFormGroup = this.fb.group({
+        name: new FormControl(this.data.product.name, [Validators.required]),
+        price: new FormControl(this.data.product.price, [Validators.required]),
+        description: new FormControl(this.data.product.description, [Validators.required]),
+        category: this.data.product.category,
+      });
+    } else {
+      this.addProductFormGroup = this.fb.group({
+        name: new FormControl('', [Validators.required]),
+        price: new FormControl('', [Validators.required]),
+        description: new FormControl('', [Validators.required]),
+      });
+    }
   }
 
   get price() {
     return this.addProductFormGroup.get('price');
   }
+
   get name() {
     return this.addProductFormGroup.get('name');
   }
+
   get description() {
     return this.addProductFormGroup.get('description');
   }
@@ -72,11 +89,44 @@ export class AddProductComponent implements OnInit {
     }
   }
 
+  editProduct() {
+    const formProduct = {
+      price: this.addProductFormGroup.get('price').value,
+      description: this.addProductFormGroup.get('description').value,
+      name: this.addProductFormGroup.get('name').value
+    };
+
+    if (formProduct.name === '') {
+      formProduct.name = this.data.product.name;
+    }
+
+    if (formProduct.description === '') {
+      formProduct.description = this.data.product.description;
+    }
+
+    if (formProduct.price === '') {
+      formProduct.price = this.data.product.price;
+    }
+
+    const product = new Product(this.data.product.id,
+      formProduct.name, true,
+      formProduct.description,
+      formProduct.price,
+      this.stateCtrl.value ? (this.stateCtrl.value.id) : null);
+    this.productService.editProduct(product).subscribe(item => {
+      this.dialogRef.close(item);
+    });
+  }
+
   private _filterCategories(value: any): Category[] {
     return this.categories.filter(category => category.name.toLowerCase().indexOf(value) === 0);
   }
 
   displayFn(category): string {
     return category ? category.name : category;
+  }
+
+  public selectCategory(category: Category) {
+    this.selectedCategory = category;
   }
 }

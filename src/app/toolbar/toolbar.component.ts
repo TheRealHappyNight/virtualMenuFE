@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {TokenStorageService} from '../auth/token-storage.service';
 import {Router} from '@angular/router';
-import {BaseCartItem, CartService} from 'ng-shopping-cart';
 import {CustomCartService} from '../services/custom-cart.service';
 import {AppUtilities} from '../services/AppUtilities';
 
@@ -12,7 +12,8 @@ import {AppUtilities} from '../services/AppUtilities';
 export class ToolbarComponent implements OnInit {
   title: string;
 
-  constructor(private router: Router,
+  constructor(private tokenStorage: TokenStorageService,
+              private router: Router,
               private cartService: CustomCartService) { }
 
   ngOnInit() {
@@ -32,5 +33,9 @@ export class ToolbarComponent implements OnInit {
 
   displayPrice() {
     return AppUtilities.displayPrice(this.cartService.getTotalCost());
+  }
+
+  logout(): void {
+    this.tokenStorage.signOut();
   }
 }
