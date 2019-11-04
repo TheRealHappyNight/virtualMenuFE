@@ -38,8 +38,9 @@ export class AddProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.selectedCategory = this.data.product.category;
-
+    if (this.data.product) {
+      this.selectedCategory = this.data.product.category;
+    }
     this.categoryService.getCategories(environment.testRestaurant).subscribe(categories => {
       this.categories = categories;
     });

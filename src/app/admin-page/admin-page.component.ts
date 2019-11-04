@@ -5,6 +5,7 @@ import {TokenStorageService} from '../auth/token-storage.service';
 import {MatDialog} from '@angular/material';
 import {AddProductComponent} from '../add-product/add-product.component';
 import {AuthService} from '../auth/auth.service';
+import {ProductDTO} from '../DTO/ProductDTO';
 
 @Component({
   selector: 'app-admin-page',
@@ -15,6 +16,7 @@ export class AdminPageComponent implements OnInit {
   currentUserInfo: any;
   products: Product[] = [];
   isLoading = true;
+  selectedTab = 0;
 
   constructor(private productService: ProductService,
               private token: TokenStorageService,
@@ -29,7 +31,7 @@ export class AdminPageComponent implements OnInit {
       username: this.token.getUsername()
     };
     if (this.currentUserInfo.token) {
-      this.productService.getAllProducts('abc-123').subscribe(products => {
+      this.productService.getAllProducts(localStorage.getItem('restaurantUUID')).subscribe(products => {
         this.products = products;
         this.products.sort((a, b) => a.name.localeCompare(b.name));
         this.isLoading = false;
@@ -48,9 +50,11 @@ export class AdminPageComponent implements OnInit {
   }
 
   addProduct(): void {
+    const product = new ProductDTO();
+    product.isEditing = false;
     const dialogRef = this.dialog.open(AddProductComponent, {
       width: '400px',
-      data: {}
+      data: product
     });
 
     dialogRef.afterClosed().subscribe(result => {

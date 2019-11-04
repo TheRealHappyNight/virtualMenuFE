@@ -8,10 +8,15 @@ import {Table} from '../model/Table';
 })
 export class OrderingTableComponent implements OnInit {
   @Input() table: Table;
+  tableURL: string;
 
   constructor() { }
 
   ngOnInit() {
+    this.getURL();
   }
 
+  getURL() {
+    this.tableURL = 'http://' + window.location.host + '/restaurant/' + this.table.restaurant.uuid + '/' + this.table.id;
+  }
 }

@@ -24,7 +24,7 @@ export class ToolbarComponent implements OnInit {
   }
 
   enterMainPage(): void {
-    this.router.navigate(['/']);
+    this.router.navigate(['/restaurant/' + localStorage.getItem('restaurantUUID') + '/' + localStorage.getItem('tableId')]);
   }
 
   enterShoppingCart(): void {

@@ -9,7 +9,7 @@ import {
   MatCardModule,
   MatCheckboxModule,
   MatDialogModule,
-  MatFormFieldModule,
+  MatFormFieldModule, MatGridListModule,
   MatIconModule,
   MatInputModule,
   MatListModule,
@@ -31,15 +31,20 @@ import {LoadingSpinnerComponent} from './loading-spinner/loading-spinner.compone
 import {LoginComponent} from './auth/login/login.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {RegisterComponent} from './auth/register/register.component';
+import {httpInterceptorProviders} from './auth/auth-interceptor';
 import {AddProductComponent} from './add-product/add-product.component';
+import {AuthErrorHandler} from './auth/AuthErrorHandler';
 import {FlexModule} from '@angular/flex-layout';
 import {ProductListingComponent} from './product-listing/product-listing.component';
 import {PictureComponent} from './picture/picture.component';
 import {ShoppingCartModule} from 'ng-shopping-cart';
 import {CartListingComponent} from './cart-listing/cart-listing.component';
 import {CartViewComponent} from './cart-view/cart-view.component';
-import {TableListingComponent} from './table-listing/table-listing.component';
-import {OrderingTableComponent} from './ordering-table/ordering-table.component';
+import { TableListingComponent } from './table-listing/table-listing.component';
+import { OrderingTableComponent } from './ordering-table/ordering-table.component';
+import { EntryComponent } from './entry/entry.component';
+import {QRCodeModule} from 'angularx-qrcode';
+import {Ng2ImgMaxModule} from 'ng2-img-max';
 
 @NgModule({
   declarations: [
@@ -57,7 +62,8 @@ import {OrderingTableComponent} from './ordering-table/ordering-table.component'
     CartListingComponent,
     CartViewComponent,
     TableListingComponent,
-    OrderingTableComponent
+    OrderingTableComponent,
+    EntryComponent
   ],
   imports: [
     BrowserModule,
@@ -88,6 +94,9 @@ import {OrderingTableComponent} from './ordering-table/ordering-table.component'
     MatSnackBarModule,
     MatAutocompleteModule,
     FlexModule,
+    QRCodeModule,
+    MatGridListModule,
+    Ng2ImgMaxModule,
     ShoppingCartModule.forRoot({
       serviceType: 'localStorage',
       serviceOptions: {
