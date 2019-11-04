@@ -37,13 +37,17 @@ export class AdminPageComponent implements OnInit {
     }
   }
 
-  receiveMessage($event) {
-    this.products.splice(this.products.indexOf($event), 1);
-    this.products.push($event);
-    this.products.slice(0);
+  checkById($event, id) {
+    return $event.id === id;
   }
 
-  openDialog(): void {
+  receiveMessage($event) {
+    const index = this.products.findIndex(i => this.checkById($event, i.id));
+    this.products.splice(index, 1, $event);
+    this.products.sort((a, b) => a.name.localeCompare(b.name));
+  }
+
+  addProduct(): void {
     const dialogRef = this.dialog.open(AddProductComponent, {
       width: '400px',
       data: {}

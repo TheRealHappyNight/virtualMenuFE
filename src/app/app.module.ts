@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {ErrorHandler, NgModule} from '@angular/core';
+import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
@@ -17,7 +17,8 @@ import {
   MatProgressSpinnerModule,
   MatSidenavModule,
   MatSnackBarModule,
-  MatTableModule, MatTabsModule,
+  MatTableModule,
+  MatTabsModule,
   MatToolbarModule
 } from '@angular/material';
 import {HttpClientModule} from '@angular/common/http';
@@ -30,17 +31,15 @@ import {LoadingSpinnerComponent} from './loading-spinner/loading-spinner.compone
 import {LoginComponent} from './auth/login/login.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {RegisterComponent} from './auth/register/register.component';
-import {httpInterceptorProviders} from './auth/auth-interceptor';
 import {AddProductComponent} from './add-product/add-product.component';
-import {AuthErrorHandler} from './auth/AuthErrorHandler';
 import {FlexModule} from '@angular/flex-layout';
 import {ProductListingComponent} from './product-listing/product-listing.component';
 import {PictureComponent} from './picture/picture.component';
 import {ShoppingCartModule} from 'ng-shopping-cart';
 import {CartListingComponent} from './cart-listing/cart-listing.component';
 import {CartViewComponent} from './cart-view/cart-view.component';
-import { TableListingComponent } from './table-listing/table-listing.component';
-import { OrderingTableComponent } from './ordering-table/ordering-table.component';
+import {TableListingComponent} from './table-listing/table-listing.component';
+import {OrderingTableComponent} from './ordering-table/ordering-table.component';
 
 @NgModule({
   declarations: [

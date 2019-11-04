@@ -6,7 +6,7 @@
         <div *ngFor='let product of products' class="products">
           <app-product (productEdited)="receiveMessage($event)" [product]="product" [isAdmin]="true"></app-product>
         </div>
-        <button mat-mini-fab (click)="openDialog()" class="floatRight">+</button>
+        <button mat-mini-fab (click)="addProduct()" class="floatRight">+</button>
     </div>
 
     <ng-template #loggedOut>
@@ -17,6 +17,8 @@
   <mat-tab label="Categories">
     <app-loading-spinner *ngIf="products.length < 1 && currentUserInfo.token"
                                                    [isLoading]="isLoading"></app-loading-spinner>
+
+
 
     <ng-template #loggedOut>
       <h3>Please login.</h3>
