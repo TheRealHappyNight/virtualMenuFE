@@ -9,7 +9,7 @@ import {
   MatCardModule,
   MatCheckboxModule,
   MatDialogModule,
-  MatFormFieldModule,
+  MatFormFieldModule, MatGridListModule,
   MatIconModule,
   MatInputModule,
   MatListModule,
@@ -43,6 +43,7 @@ import { TableListingComponent } from './table-listing/table-listing.component';
 import { OrderingTableComponent } from './ordering-table/ordering-table.component';
 import { EntryComponent } from './entry/entry.component';
 import {QRCodeModule} from 'angularx-qrcode';
+import {Ng2ImgMaxModule} from 'ng2-img-max';
 
 @NgModule({
   declarations: [
@@ -93,6 +94,8 @@ import {QRCodeModule} from 'angularx-qrcode';
     MatAutocompleteModule,
     FlexModule,
     QRCodeModule,
+    MatGridListModule,
+    Ng2ImgMaxModule,
     ShoppingCartModule.forRoot({
       serviceType: 'localStorage',
       serviceOptions: {

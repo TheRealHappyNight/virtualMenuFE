@@ -45,10 +45,13 @@ export class CartViewComponent implements OnInit {
 
   saveOrder() {
     const order = new Order();
+    order.tableId = +localStorage.getItem('tableId');
     this.items.forEach(item => {
       for (let i = 0; i < item.quantity; i++) {
         order.productIds.push(item.id);
       }
     });
+    this.customCartService.addOrder(order);
+    console.log(order);
   }
 }

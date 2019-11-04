@@ -16,7 +16,7 @@ export class AdminPageComponent implements OnInit {
   currentUserInfo: any;
   products: Product[] = [];
   isLoading = true;
-  selectedTab = 2;
+  selectedTab = 0;
 
   constructor(private productService: ProductService,
               private token: TokenStorageService,

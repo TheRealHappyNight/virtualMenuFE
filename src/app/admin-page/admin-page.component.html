@@ -3,10 +3,12 @@
     <mat-tab label="Products">
       <app-loading-spinner *ngIf="products.length < 1 && currentUserInfo.token"
                            [isLoading]="isLoading"></app-loading-spinner>
-      <div *ngFor='let product of products' class="products">
-        <app-product (productEdited)="receiveMessage($event)" [product]="product" [isAdmin]="true"></app-product>
-      </div>
-      <button mat-mini-fab (click)="addProduct()" class="floatRight">+</button>
+      <button mat-mini-fab (click)="addProduct()" class="floatRight, products">+</button>
+      <mat-grid-list cols="4">
+        <mat-grid-tile *ngFor="let product of products">
+          <app-product class="products" (productEdited)="receiveMessage($event)" [product]="product" [isAdmin]="true"></app-product>
+        </mat-grid-tile>
+      </mat-grid-list>
     </mat-tab>
     <mat-tab label="Categories">Not working</mat-tab>
     <mat-tab label="Tables">
@@ -14,10 +16,10 @@
     </mat-tab>
 
   </mat-tab-group>
-</div>
+  </div>
 
-<ng-template #loggedOut>
-  <h3>Please login.</h3>
-  <a mat-raised-button href="login" color="accent">Login</a>
-</ng-template>
+  <ng-template #loggedOut>
+    <h3>Please login.</h3>
+    <a mat-raised-button href="login" color="accent">Login</a>
+  </ng-template>
 
