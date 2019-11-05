@@ -6,6 +6,8 @@ import {MatDialog} from '@angular/material';
 import {AddProductComponent} from '../add-product/add-product.component';
 import {AuthService} from '../auth/auth.service';
 import {ProductDTO} from '../DTO/ProductDTO';
+import {CategoryService} from '../services/category.service';
+import {Category} from '../model/category';
 
 @Component({
   selector: 'app-admin-page',
@@ -15,10 +17,12 @@ import {ProductDTO} from '../DTO/ProductDTO';
 export class AdminPageComponent implements OnInit {
   currentUserInfo: any;
   products: Product[] = [];
+  categories: Category[] = [];
   isLoading = true;
   selectedTab = 0;
 
   constructor(private productService: ProductService,
+              private categoryService: CategoryService,
               private token: TokenStorageService,
               private dialog: MatDialog,
               private authService: AuthService) {
@@ -36,6 +40,11 @@ export class AdminPageComponent implements OnInit {
         this.products.sort((a, b) => a.name.localeCompare(b.name));
         this.isLoading = false;
       });
+
+      this.categoryService.getCategories(localStorage.getItem('restaurantUUID')).subscribe(categories => {
+        this.categories = categories;
+        this.categories.sort((a, b) => a.name.localeCompare(b.name));
+      });
     }
   }
 
@@ -43,10 +52,14 @@ export class AdminPageComponent implements OnInit {
     return $event.id === id;
   }
 
-  receiveMessage($event) {
+  receiveEditedProduct($event) {
     const index = this.products.findIndex(i => this.checkById($event, i.id));
     this.products.splice(index, 1, $event);
     this.products.sort((a, b) => a.name.localeCompare(b.name));
+  }
+
+  receiveEditedCategory($event) {
+
   }
 
   addProduct(): void {

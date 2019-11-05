@@ -5,7 +5,7 @@
 <mat-card *ngIf="!isSignedUp" class="registerElement">
   <form [formGroup]="registerFormGroup">
     <mat-form-field class="registerElement">
-      <input matInput formControlName="name" placeholder="Name">
+      <input matInput formControlName="name" placeholder="Name" autofocus>
       <mat-error *ngIf="name.invalid">The name is required!</mat-error>
     </mat-form-field>
 

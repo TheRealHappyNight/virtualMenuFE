@@ -27,7 +27,7 @@
               "src/styles.css"
             ],
             "scripts": [
-              "../node_modules/blueimp-canvas-to-blob/js/canvas-to-blob.min.js"
+              "node_modules/blueimp-canvas-to-blob/js/canvas-to-blob.min.js"
             ]
           },
           "configurations": {

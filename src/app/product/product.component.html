@@ -7,7 +7,6 @@
       <mat-card-content>
         <app-picture *ngIf="product.image" [image]="product.image"></app-picture>
         <add-to-cart *ngIf="product.image" [item]="createCartItem()" [custom]="true">
-          <button mat-raised-button>Add product</button>
         </add-to-cart>
       </mat-card-content>
     <mat-card-actions *ngIf="isAdmin">
@@ -26,4 +25,5 @@
              (change)="processFile(imageInput)">
     </mat-card-actions>
   </mat-card>
+  <button mat-raised-button>Add product</button>
 </div>

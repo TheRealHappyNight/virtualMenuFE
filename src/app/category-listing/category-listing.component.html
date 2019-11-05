@@ -1,10 +1,6 @@
 <div *ngIf="categories.length > 0">
     <mat-card *ngFor="let category of categories"
               [routerLink]="['/category', category.id]">
-<!--      <img mat-card-image-->
-<!--           *ngIf="category.picturePath"-->
-<!--           src="{{category.picturePath}}"-->
-<!--           alt="">-->
 
       <mat-card-title>
         {{category.name}}

@@ -1,7 +1,7 @@
 <mat-card class="centerElement">
   <form [formGroup]="loginFormGroup">
     <mat-form-field class="centerElement">
-      <input matInput formControlName="username" placeholder="Username">
+      <input matInput formControlName="username" placeholder="Username" autofocus>
       <mat-error *ngIf="username.invalid">The username is required!</mat-error>
 
     </mat-form-field>
