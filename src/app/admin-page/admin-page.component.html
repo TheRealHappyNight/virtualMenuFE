@@ -1,4 +1,4 @@
-<div *ngIf="!authService.isTokenExpired(); else loggedOut">
+<div *ngIf="authService.isAdmin(); else loggedOut">
   <mat-tab-group [(selectedIndex)]="selectedTab">
     <mat-tab label="Products">
       <app-loading-spinner *ngIf="products.length < 1 && currentUserInfo.token"

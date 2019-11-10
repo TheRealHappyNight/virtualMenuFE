@@ -1,10 +1,15 @@
 <mat-grid-list cols="4">
   <mat-grid-tile *ngFor="let category of categories">
-    <app-category *ngIf="authService.isTokenExpired()" [category]="category"
+    <app-category *ngIf="!authService.isAdmin()"
+                  [category]="category"
+                  [routerLink]="['/category/', category.id]"
                   [isAdmin]=false></app-category>
 
-    <app-category *ngIf="!authService.isTokenExpired()" [category]="category" (categoryEdited)="editCategory($event)"
-                  (categoryDelete)="deleteCategory($event)" [isAdmin]=true></app-category>
+    <app-category *ngIf="authService.isAdmin()"
+                  [category]="category"
+                  (categoryEdited)="editCategory($event)"
+                  (categoryDelete)="deleteCategory($event)"
+                  [isAdmin]=true></app-category>
   </mat-grid-tile>
   <button mat-raised-button (click)="addCategory()">Add category</button>
 </mat-grid-list>
