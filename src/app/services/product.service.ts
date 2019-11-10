@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Product} from '../model/product';
 import {environment} from '../../environments/environment';
@@ -9,10 +9,11 @@ import {Observable} from 'rxjs';
 })
 export class ProductService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+  }
 
   getAllProducts(selectedRestaurant: string) {
-    return this.httpClient.get<Product[]>(environment.backendUrl + '/restaurant/' +  selectedRestaurant + '/product');
+    return this.httpClient.get<Product[]>(environment.backendUrl + '/restaurant/' + selectedRestaurant + '/product');
   }
 
   switchState(product: Product): Observable<Product> {
@@ -26,5 +27,9 @@ export class ProductService {
 
   editProduct(product: Product) {
     return this.httpClient.put<Product>(environment.backendUrl + '/product', product);
+  }
+
+  deleteProduct(product: Product) {
+    return this.httpClient.delete(environment.backendUrl + '/product/' + product.id);
   }
 }

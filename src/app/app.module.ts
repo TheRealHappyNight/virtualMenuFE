@@ -44,6 +44,8 @@ import {OrderingTableComponent} from './ordering-table/ordering-table.component'
 import {EntryComponent} from './entry/entry.component';
 import {QRCodeModule} from 'angularx-qrcode';
 import {Ng2ImgMaxModule} from 'ng2-img-max';
+import {CategoryComponent} from './category/category.component';
+import {AddCategoryComponent} from './add-category/add-category.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +64,9 @@ import {Ng2ImgMaxModule} from 'ng2-img-max';
     CartViewComponent,
     TableListingComponent,
     OrderingTableComponent,
-    EntryComponent
+    EntryComponent,
+    CategoryComponent,
+    AddCategoryComponent
   ],
   imports: [
     BrowserModule,
@@ -111,7 +115,7 @@ import {Ng2ImgMaxModule} from 'ng2-img-max';
   //     useClass: AuthErrorHandler
   //   }],
   bootstrap: [AppComponent],
-  entryComponents: [AddProductComponent]
+  entryComponents: [AddProductComponent, AddCategoryComponent]
 })
 export class AppModule {
 }

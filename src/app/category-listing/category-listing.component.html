@@ -1,13 +1,7 @@
-<div *ngIf="categories.length > 0">
-    <mat-card *ngFor="let category of categories"
-              [routerLink]="['/category', category.id]">
-
-      <mat-card-title>
-        {{category.name}}
-      </mat-card-title>
-
-      <mat-card-subtitle>
-        {{category.description}}
-      </mat-card-subtitle>
-    </mat-card>
-</div>
+<mat-grid-list cols="2">
+  <mat-grid-tile *ngFor="let category of categories">
+    <app-category [category]="category" (categoryEdited)="editCategory($event)"
+                  (categoryDelete)="deleteCategory($event)" [isAdmin]=true></app-category>
+  </mat-grid-tile>
+  <button mat-raised-button (click)="addCategory()">Add category</button>
+</mat-grid-list>

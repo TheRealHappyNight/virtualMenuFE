@@ -23,6 +23,7 @@
              type="file"
              accept="image/*"
              (change)="processFile(imageInput)">
+      <button mat-mini-fab (click)="deleteProduct(product)">-</button>
     </mat-card-actions>
   </mat-card>
   <button mat-raised-button>Add product</button>

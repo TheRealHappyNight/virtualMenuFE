@@ -25,6 +25,7 @@ export class ProductComponent implements OnInit {
   @Input() isAdmin: boolean;
   selectedFile: ImageSnippet;
   @Output() productEdited: EventEmitter<Product> = new EventEmitter<Product>();
+  @Output() productDelete: EventEmitter<Product> = new EventEmitter<Product>();
 
   constructor(private productService: ProductService,
               private imageService: ImageService,
@@ -33,7 +34,7 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.imageService.getImage(this.product).subscribe(image => {
+    this.imageService.getProductImage(this.product).subscribe(image => {
       this.product.image = image;
     });
   }
@@ -54,7 +55,6 @@ export class ProductComponent implements OnInit {
   switchState() {
     this.productService.switchState(this.product).subscribe(item => {
       this.product = item;
-      console.log(item);
     });
   }
 
@@ -78,7 +78,7 @@ export class ProductComponent implements OnInit {
       this.selectedFile = new ImageSnippet(event.target.result, file);
 
       this.selectedFile.pending = true;
-      this.imageService.uploadImage(this.selectedFile.file, this.product).subscribe(
+      this.imageService.uploadProductImage(this.selectedFile.file, this.product).subscribe(
         (res) => {
           this.onSuccess();
         },
@@ -109,5 +109,9 @@ export class ProductComponent implements OnInit {
 
   selectImage() {
     document.getElementById('imageInput').click();
+  }
+
+  deleteProduct(product: Product) {
+    this.productDelete.emit(product);
   }
 }

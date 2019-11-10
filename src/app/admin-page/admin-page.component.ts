@@ -19,7 +19,7 @@ export class AdminPageComponent implements OnInit {
   products: Product[] = [];
   categories: Category[] = [];
   isLoading = true;
-  selectedTab = 0;
+  selectedTab = 1;
 
   constructor(private productService: ProductService,
               private categoryService: CategoryService,
@@ -58,10 +58,6 @@ export class AdminPageComponent implements OnInit {
     this.products.sort((a, b) => a.name.localeCompare(b.name));
   }
 
-  receiveEditedCategory($event) {
-
-  }
-
   addProduct(): void {
     const product = new ProductDTO();
     product.isEditing = false;
@@ -74,6 +70,14 @@ export class AdminPageComponent implements OnInit {
       if (result) {
         this.products.push(result);
       }
+    });
+  }
+
+  deleteProduct($event) {
+    this.productService.deleteProduct($event).subscribe( item => {
+      const index = this.products.findIndex(i => this.checkById($event, i.id));
+      this.products.splice(index, 1);
+      this.products.sort((a, b) => a.name.localeCompare(b.name));
     });
   }
 }
