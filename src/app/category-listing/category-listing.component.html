@@ -11,5 +11,8 @@
                   (categoryDelete)="deleteCategory($event)"
                   [isAdmin]=true></app-category>
   </mat-grid-tile>
-  <button mat-raised-button (click)="addCategory()">Add category</button>
+  <button mat-raised-button
+          *ngIf="authService.isAdmin()"
+          (click)="addCategory()">Add category
+  </button>
 </mat-grid-list>

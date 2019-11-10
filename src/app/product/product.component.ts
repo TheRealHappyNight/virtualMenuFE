@@ -108,7 +108,7 @@ export class ProductComponent implements OnInit {
   }
 
   selectImage() {
-    document.getElementById('imageInput').click();
+    document.getElementById('imageInput' + this.product.id).click();
   }
 
   deleteProduct(product: Product) {
