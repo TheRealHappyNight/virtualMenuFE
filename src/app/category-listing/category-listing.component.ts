@@ -4,6 +4,7 @@ import {Category} from '../model/category';
 import {CategoryService} from '../services/category.service';
 import {MatDialog} from '@angular/material';
 import {AddCategoryComponent} from '../add-category/add-category.component';
+import {AuthService} from '../auth/auth.service';
 
 @Component({
   selector: 'app-category-listing',
@@ -15,8 +16,9 @@ export class CategoryListingComponent implements OnInit {
   categories: Category[] = [];
 
   constructor(private categoryService: CategoryService,
-              private dialog: MatDialog) {
-  }
+              private dialog: MatDialog,
+              private authService: AuthService) {
+}
 
   ngOnInit() {
     this.getCategories();
