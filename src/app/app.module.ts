@@ -46,6 +46,7 @@ import {QRCodeModule} from 'angularx-qrcode';
 import {Ng2ImgMaxModule} from 'ng2-img-max';
 import {CategoryComponent} from './category/category.component';
 import {AddCategoryComponent} from './add-category/add-category.component';
+import {httpInterceptorProviders} from './auth/auth-interceptor';
 
 @NgModule({
   declarations: [
@@ -109,11 +110,12 @@ import {AddCategoryComponent} from './add-category/add-category.component';
     }),
     MatTabsModule,
   ],
-  // providers: [httpInterceptorProviders,
-  //   {
-  //     provide: ErrorHandler,
-  //     useClass: AuthErrorHandler
-  //   }],
+  providers: [httpInterceptorProviders,
+    // {
+    //   provide: ErrorHandler,
+    //   useClass: AuthErrorHandler
+    // }
+    ],
   bootstrap: [AppComponent],
   entryComponents: [AddProductComponent, AddCategoryComponent]
 })
