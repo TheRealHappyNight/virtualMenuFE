@@ -46,6 +46,7 @@ import {QRCodeModule} from 'angularx-qrcode';
 import {Ng2ImgMaxModule} from 'ng2-img-max';
 import {CategoryComponent} from './category/category.component';
 import {AddCategoryComponent} from './add-category/add-category.component';
+import { AddTableComponent } from './add-table/add-table.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import {AddCategoryComponent} from './add-category/add-category.component';
     OrderingTableComponent,
     EntryComponent,
     CategoryComponent,
-    AddCategoryComponent
+    AddCategoryComponent,
+    AddTableComponent
   ],
   imports: [
     BrowserModule,

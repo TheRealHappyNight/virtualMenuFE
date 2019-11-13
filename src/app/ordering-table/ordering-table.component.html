@@ -3,4 +3,6 @@
   <h4>Seats: {{table.seats}}</h4>
   <h4>URL: <a [href]="tableURL">{{tableURL}}</a></h4>
   <qrcode [qrdata]="tableURL" [size]="256" [level]="'M'"></qrcode>
+  <button mat-raised-button (click)="modifyTable()">Modify table</button>
+  <button mat-raised-button (click)="deleteTable()">Delete table</button>
 </mat-card>
