@@ -19,7 +19,7 @@ export class AdminPageComponent implements OnInit {
   products: Product[] = [];
   categories: Category[] = [];
   isLoading = true;
-  selectedTab = 1;
+  selectedTab = 0;
 
   constructor(private productService: ProductService,
               private categoryService: CategoryService,

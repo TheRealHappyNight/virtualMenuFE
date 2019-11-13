@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {BaseCartItem, CartService} from 'ng-shopping-cart';
 import {CustomCartService} from '../services/custom-cart.service';
 import {AppUtilities} from '../services/AppUtilities';
-import {Order} from '../model/order';
+import {Order, OrderedItem} from '../model/order';
 
 @Component({
   selector: 'app-cart-view',
@@ -47,11 +47,11 @@ export class CartViewComponent implements OnInit {
     const order = new Order();
     order.tableId = +localStorage.getItem('tableId');
     this.items.forEach(item => {
-      for (let i = 0; i < item.quantity; i++) {
-        order.productIds.push(item.id);
-      }
+        order.orderedItems.push(new OrderedItem(item.id, item.quantity));
     });
-    this.customCartService.addOrder(order);
-    console.log(order);
+    this.customCartService.addOrder(order).subscribe(response => {
+      console.log(response);
+    });
+    // console.log(order);
   }
 }

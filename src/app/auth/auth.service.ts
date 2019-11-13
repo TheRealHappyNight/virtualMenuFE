@@ -7,6 +7,7 @@ import {JwtResponse} from './model/jwt-response';
 import {environment} from '../../environments/environment';
 import * as jwt_decode from 'jwt-decode';
 import {TokenStorageService} from './token-storage.service';
+import {Router} from '@angular/router';
 
 
 const httpOptions = {
@@ -22,7 +23,8 @@ export class AuthService {
   private URL = environment.backendUrl + '/api/auth/';
 
   constructor(private http: HttpClient,
-              private tokenStorage: TokenStorageService) {
+              private tokenStorage: TokenStorageService,
+              private router: Router) {
   }
 
   attemptAuth(credentials: AuthLoginInfo): Observable<JwtResponse> {
@@ -44,11 +46,25 @@ export class AuthService {
   }
 
   isTokenExpired(token?: string): boolean {
-    if (!token) { token = this.tokenStorage.getToken(); }
-    if (!token) { return true; }
+    if (!token) {
+      token = this.tokenStorage.getToken();
+    }
+    if (!token) {
+      return true;
+    }
 
     const date = this.getTokenExpirationDate(token);
-    if (date === undefined) { return false; }
+    if (date === undefined) {
+      return false;
+    }
     return !(date.valueOf() > new Date().valueOf());
+  }
+
+  isAdmin(): boolean {
+    if (this.router.url === '/admin' && !this.isTokenExpired()) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
