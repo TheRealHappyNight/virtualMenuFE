@@ -47,6 +47,7 @@ import {Ng2ImgMaxModule} from 'ng2-img-max';
 import {CategoryComponent} from './category/category.component';
 import {AddCategoryComponent} from './add-category/add-category.component';
 import {httpInterceptorProviders} from './auth/auth-interceptor';
+import { OrderListingComponent } from './order-listing/order-listing.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import {httpInterceptorProviders} from './auth/auth-interceptor';
     OrderingTableComponent,
     EntryComponent,
     CategoryComponent,
-    AddCategoryComponent
+    AddCategoryComponent,
+    OrderListingComponent
   ],
   imports: [
     BrowserModule,
