@@ -39,34 +39,10 @@ export class ProductComponent implements OnInit {
     });
   }
 
-  private createCartItem() {
-    const item = new BaseCartItem();
-    item.setId(this.product.id);
-    item.setName(this.product.name);
-    item.setPrice(this.product.price);
-    if (this.cartService.getItem(this.product.id)) {
-      item.setQuantity(this.cartService.getItem(this.product.id).quantity + 1);
-    } else {
-      item.setQuantity(1);
-    }
-    return item;
-  }
-
   switchState() {
     this.productService.switchState(this.product).subscribe(item => {
       this.product = item;
     });
-  }
-
-  private onSuccess() {
-    this.selectedFile.pending = false;
-    this.selectedFile.status = 'ok';
-  }
-
-  private onError() {
-    this.selectedFile.pending = false;
-    this.selectedFile.status = 'fail';
-    this.selectedFile.src = '';
   }
 
   processFile(imageInput: any) {
@@ -113,5 +89,29 @@ export class ProductComponent implements OnInit {
 
   deleteProduct(product: Product) {
     this.productDelete.emit(product);
+  }
+
+  private createCartItem() {
+    const item = new BaseCartItem();
+    item.setId(this.product.id);
+    item.setName(this.product.name);
+    item.setPrice(this.product.price);
+    if (this.cartService.getItem(this.product.id)) {
+      item.setQuantity(this.cartService.getItem(this.product.id).quantity + 1);
+    } else {
+      item.setQuantity(1);
+    }
+    return item;
+  }
+
+  private onSuccess() {
+    this.selectedFile.pending = false;
+    this.selectedFile.status = 'ok';
+  }
+
+  private onError() {
+    this.selectedFile.pending = false;
+    this.selectedFile.status = 'fail';
+    this.selectedFile.src = '';
   }
 }

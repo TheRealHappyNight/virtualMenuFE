@@ -37,6 +37,18 @@ export class AddProductComponent implements OnInit {
       );
   }
 
+  get price() {
+    return this.addProductFormGroup.get('price');
+  }
+
+  get name() {
+    return this.addProductFormGroup.get('name');
+  }
+
+  get description() {
+    return this.addProductFormGroup.get('description');
+  }
+
   ngOnInit(): void {
     if (this.data.product) {
       this.selectedCategory = this.data.product.category;
@@ -61,18 +73,6 @@ export class AddProductComponent implements OnInit {
     }
   }
 
-  get price() {
-    return this.addProductFormGroup.get('price');
-  }
-
-  get name() {
-    return this.addProductFormGroup.get('name');
-  }
-
-  get description() {
-    return this.addProductFormGroup.get('description');
-  }
-
   addProduct() {
     const formProduct = {
       price: this.addProductFormGroup.get('price').value,
@@ -82,7 +82,9 @@ export class AddProductComponent implements OnInit {
     if (formProduct.description === '' || formProduct.name === '' || formProduct.price === '' || this.stateCtrl.value === '') {
       const notificationService = this.injector.get(NotificationService);
       notificationService.notify('Fields not filled!');
-    } else {
+      return;
+    }
+    if (this.isValidData(formProduct.price)) {
       const product = new Product(null, formProduct.name, true, formProduct.description, formProduct.price, this.stateCtrl.value.id);
       this.productService.addProduct(product).subscribe(item => {
         this.dialogRef.close(item);
@@ -109,18 +111,16 @@ export class AddProductComponent implements OnInit {
       formProduct.price = this.data.product.price;
     }
 
-    const product = new Product(this.data.product.id,
-      formProduct.name, true,
-      formProduct.description,
-      formProduct.price,
-      this.stateCtrl.value ? (this.stateCtrl.value.id) : null);
-    this.productService.editProduct(product).subscribe(item => {
-      this.dialogRef.close(item);
-    });
-  }
-
-  private _filterCategories(value: any): Category[] {
-    return this.categories.filter(category => category.name.toLowerCase().indexOf(value) === 0);
+    if (this.isValidData(formProduct.price)) {
+      const product = new Product(this.data.product.id,
+        formProduct.name, true,
+        formProduct.description,
+        formProduct.price,
+        this.stateCtrl.value ? (this.stateCtrl.value.id) : this.data.product.category.id);
+      this.productService.editProduct(product).subscribe(item => {
+        this.dialogRef.close(item);
+      });
+    }
   }
 
   displayFn(category): string {
@@ -129,5 +129,39 @@ export class AddProductComponent implements OnInit {
 
   public selectCategory(category: Category) {
     this.selectedCategory = category;
+  }
+
+  checkByName($event, $event2) {
+    return ($event.name === $event2.name) && ($event.id !== $event2.id);
+  }
+
+  private _filterCategories(value: any): Category[] {
+    return this.categories.filter(category => category.name.toLowerCase().indexOf(value) === 0);
+  }
+
+  private isValidData(price: any) {
+    const notificationService = this.injector.get(NotificationService);
+
+    if (isNaN(parseFloat(price))) {
+      notificationService.notify('Price should be a number!');
+      return false;
+    }
+
+    let products: Product[] = [];
+
+    this.productService.getAllProducts(localStorage.getItem('restaurantUUID')).subscribe(items => {
+      products = items;
+    });
+
+
+    // Check if the name product doesn't already exist
+    // eroare nu merge
+    console.log(products.findIndex(item => this.checkByName(this.data.product, item)));
+    if (products.findIndex(item => this.checkByName(this.data.product, item)) !== -1) {
+      notificationService.notify('The product already exists!');
+      return false;
+    }
+
+    return true;
   }
 }

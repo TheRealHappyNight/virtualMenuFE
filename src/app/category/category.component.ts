@@ -51,7 +51,7 @@ export class CategoryComponent implements OnInit {
       this.selectedFile = new ImageSnippet(event.target.result, file);
 
       this.selectedFile.pending = true;
-      console.log(this.category.id);
+
       this.imageService.uploadCategoryImage(this.selectedFile.file, this.category).subscribe(
         (res) => {
           this.onSuccess();
@@ -64,7 +64,7 @@ export class CategoryComponent implements OnInit {
     reader.readAsDataURL(file);
   }
 
-  addOrEditCategory(category: Category): void {
+  editCategory(category: Category): void {
     const categoryDTO: CategoryDTO = new CategoryDTO();
     categoryDTO.isEditing = true;
     categoryDTO.category = category;
@@ -86,8 +86,7 @@ export class CategoryComponent implements OnInit {
   }
 
   deleteCategory(category: Category) {
-    console.log(this.category.id);
-    // this.categoryDelete.emit(category);
+    this.categoryDelete.emit(category);
   }
 
   private onSuccess() {

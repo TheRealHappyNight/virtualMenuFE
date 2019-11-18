@@ -47,6 +47,7 @@ import {Ng2ImgMaxModule} from 'ng2-img-max';
 import {CategoryComponent} from './category/category.component';
 import {AddCategoryComponent} from './add-category/add-category.component';
 import { AddTableComponent } from './add-table/add-table.component';
+import { EditAdminPageComponent } from './edit-admin-page/edit-admin-page.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { AddTableComponent } from './add-table/add-table.component';
     EntryComponent,
     CategoryComponent,
     AddCategoryComponent,
-    AddTableComponent
+    AddTableComponent,
+    EditAdminPageComponent
   ],
   imports: [
     BrowserModule,
@@ -117,7 +119,7 @@ import { AddTableComponent } from './add-table/add-table.component';
   //     useClass: AuthErrorHandler
   //   }],
   bootstrap: [AppComponent],
-  entryComponents: [AddProductComponent, AddCategoryComponent]
+  entryComponents: [AddProductComponent, AddCategoryComponent, AddTableComponent]
 })
 export class AppModule {
 }

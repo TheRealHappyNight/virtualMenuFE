@@ -1,0 +1,30 @@
+<div *ngIf="authService.isAdmin(); else loggedOut">
+  <button mat-raised-button [routerLink]="['/admin']">
+    Done
+  </button>
+  <mat-tab-group [(selectedIndex)]="selectedTab">
+    <mat-tab label="Products">
+      <app-loading-spinner *ngIf="products.length < 1 && currentUserInfo.token"
+                           [isLoading]="isLoading"></app-loading-spinner>
+      <button mat-mini-fab (click)="addProduct()" class="floatRight, products">+</button>
+      <mat-grid-list cols="4">
+        <mat-grid-tile *ngFor="let product of products">
+          <app-product class="products" (productEdited)="receiveEditedProduct($event)"
+                       (productDelete)="deleteProduct($event)" [product]="product"
+                       [isAdmin]="true"></app-product>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-tab>
+    <mat-tab label="Categories">
+      <app-category-listing></app-category-listing>
+    </mat-tab>
+    <mat-tab label="Tables">
+      <app-table-listing [isEditingConfig]="true"></app-table-listing>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
+<ng-template #loggedOut>
+  <h3>Please login.</h3>
+  <a mat-raised-button href="login" color="accent">Login</a>
+</ng-template>

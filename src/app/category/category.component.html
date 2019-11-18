@@ -12,16 +12,25 @@
     </mat-card-content>
     <mat-card-actions *ngIf="isAdmin">
       <button mat-raised-button id="editCategory"
-              (click)="addOrEditCategory(category)">
+              (click)="editCategory(category)">
         Edit
       </button>
-      <button mat-button (click)="selectImage()">Choose image</button>
-      <input #imageInput
-             id="imageInput"
-             style="visibility: hidden"
-             type="file"
-             accept="image/*"
-             (change)="processFile(imageInput)">
+<!--      <button mat-button (click)="selectImage()">Choose image</button>-->
+<!--      <input #imageInput-->
+<!--             id="imageInput"-->
+<!--             style="visibility: hidden"-->
+<!--             type="file"-->
+<!--             accept="image/*"-->
+<!--             (change)="processFile(imageInput)">-->
+      <div class="mat-card inputContainer">
+        <input #imageInput
+               id="imageInput"
+               style="opacity: 0%"
+               class="inputElement"
+               type="file"
+               accept="image/*"
+               (change)="processFile(imageInput)">
+      </div>
       <button mat-raised-button (click)="deleteCategory(category)">Delete Category</button>
     </mat-card-actions>
   </mat-card>

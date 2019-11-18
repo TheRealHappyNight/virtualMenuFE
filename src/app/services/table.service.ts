@@ -25,6 +25,6 @@ export class TableService {
   }
 
   deleteTable(table: Table) {
-    return this.httpClient.delete(environment.backendUrl + '/table' + table.id);
+    return this.httpClient.delete(environment.backendUrl + '/table/' + table.id);
   }
 }

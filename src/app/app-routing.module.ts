@@ -8,6 +8,7 @@ import {ProductListingComponent} from './product-listing/product-listing.compone
 import {CartListingComponent} from './cart-listing/cart-listing.component';
 import {EntryComponent} from './entry/entry.component';
 import {QRCodeModule} from 'angularx-qrcode';
+import {EditAdminPageComponent} from './edit-admin-page/edit-admin-page.component';
 
 const appRoutes: Routes = [
   {path: 'restaurant/:uuid/:id', component: EntryComponent},
@@ -16,6 +17,7 @@ const appRoutes: Routes = [
   {path: 'signup', component: RegisterComponent},
   {path: 'category/:id', component: ProductListingComponent},
   {path: 'cart', component: CartListingComponent},
+  {path: 'admin/edit', component: EditAdminPageComponent}
 ];
 
 @NgModule({

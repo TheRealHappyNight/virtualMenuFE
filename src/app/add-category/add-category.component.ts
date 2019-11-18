@@ -23,6 +23,14 @@ export class AddCategoryComponent implements OnInit {
               private categoryService: CategoryService) {
   }
 
+  get name() {
+    return this.addCategoryFormGroup.get('name');
+  }
+
+  get description() {
+    return this.addCategoryFormGroup.get('description');
+  }
+
   ngOnInit() {
     this.categoryService.getCategories(environment.testRestaurant).subscribe(categories => {
       this.categories = categories;
@@ -41,23 +49,19 @@ export class AddCategoryComponent implements OnInit {
     }
   }
 
-  get name() {
-    return this.addCategoryFormGroup.get('name');
-  }
-
-  get description() {
-    return this.addCategoryFormGroup.get('description');
-  }
-
   addCategory() {
     const formCategory = {
       description: this.addCategoryFormGroup.get('description').value,
       name: this.addCategoryFormGroup.get('name').value
     };
+
     if (formCategory.description === '' || formCategory.name === '') {
       const notificationService = this.injector.get(NotificationService);
       notificationService.notify('Fields not filled!');
-    } else {
+      return;
+    }
+
+    if (this.isDataValid()) {
       const category = new Category(null, localStorage.getItem('restaurantUUID'), formCategory.name, formCategory.description);
       this.categoryService.addCategory(category).subscribe(item => {
         this.dialogRef.close(item);
@@ -79,13 +83,34 @@ export class AddCategoryComponent implements OnInit {
       formCategory.description = this.data.category.description;
     }
 
-    const category = new Category(this.data.category.id,
-      localStorage.getItem('restaurantUUID'),
-      formCategory.name,
-      formCategory.description);
-    this.categoryService.editCategory(category).subscribe(item => {
-      this.dialogRef.close(item);
-    });
+    if (this.isDataValid()) {
+      const category = new Category(this.data.category.id,
+        localStorage.getItem('restaurantUUID'),
+        formCategory.name,
+        formCategory.description);
+      this.categoryService.editCategory(category).subscribe(item => {
+        this.dialogRef.close(item);
+      });
+    }
+  }
+
+  checkByName($event, name) {
+    return $event.name === name;
+  }
+
+  private isDataValid() {
+    const notificationService = this.injector.get(NotificationService);
+
+    // Check if the name already exists
+    // eroare nu merge
+    if (!this.data.isEditing) {
+      if (this.categories.findIndex(item => this.checkByName(this.data.category, item.name))) {
+        notificationService.notify('This category already exists! Choose a different name.');
+        return false;
+      }
+    }
+
+    return true;
   }
 }
 

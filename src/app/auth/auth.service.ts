@@ -61,7 +61,8 @@ export class AuthService {
   }
 
   isAdmin(): boolean {
-    if (this.router.url === '/admin' && !this.isTokenExpired()) {
+    if (this.router.url === '/admin' && !this.isTokenExpired() ||
+      this.router.url === '/admin/edit' && !this.isTokenExpired()) {
       return true;
     } else {
       return false;

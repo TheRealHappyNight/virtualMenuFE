@@ -1,11 +1,11 @@
 <form [formGroup]="addTableFormGroup">
   <mat-form-field class="centerForms">
-    <input matInput formControlName="table number" placeholder="Choose a name">
-    <mat-error *ngIf="tableNumber.invalid">The name is required!</mat-error>
+    <input matInput formControlName="tableNumber" placeholder="Enter table number">
+    <mat-error *ngIf="tableNumber.invalid">The table number is required!</mat-error>
   </mat-form-field>
   <mat-form-field class="centerForms">
-    <input matInput formControlName="" placeholder="Choose a description">
-    <mat-error *ngIf="seats.invalid">The description is required!</mat-error>
+    <input matInput formControlName="seats" placeholder="Enter the number of seats">
+    <mat-error *ngIf="seats.invalid">The seats number is required!</mat-error>
   </mat-form-field>
 
   <button *ngIf="!data.isEditing"

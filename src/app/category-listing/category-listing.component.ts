@@ -5,6 +5,7 @@ import {CategoryService} from '../services/category.service';
 import {MatDialog} from '@angular/material';
 import {AddCategoryComponent} from '../add-category/add-category.component';
 import {AuthService} from '../auth/auth.service';
+import {CategoryDTO} from '../DTO/CategoryDTO';
 
 @Component({
   selector: 'app-category-listing',
@@ -36,14 +37,19 @@ export class CategoryListingComponent implements OnInit {
   }
 
   addCategory() {
+    const categoryDTO = new CategoryDTO();
+    categoryDTO.isEditing = false;
     const dialogRef = this.dialog.open(AddCategoryComponent, {
       width: '400px',
-      data: ''
+      data: categoryDTO
     });
 
     dialogRef.afterClosed().subscribe(item => {
       if (item) {
         this.categories.push(item);
+        const index = this.categories.findIndex(i => this.checkById(item, i.id));
+        this.categories.splice(index, 1, item);
+        this.categories.sort((a, b) => a.name.localeCompare(b.name));
       }
     });
   }

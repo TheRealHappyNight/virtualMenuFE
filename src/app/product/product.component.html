@@ -15,7 +15,6 @@
       </button>
       <button mat-button *ngIf="product.active" (click)="switchState()">OutOfStock</button>
       <button mat-button *ngIf="!product.active" (click)="switchState()">InStock</button>
-      <!--        <button mat-button (click)="selectImage()">Choose image</button>-->
       <div class="mat-card inputContainer">
         <input #imageInput
                id="imageInput"

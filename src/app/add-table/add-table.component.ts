@@ -49,6 +49,28 @@ export class AddTableComponent implements OnInit {
     }
   }
 
+  checkById(event: Table, id) {
+    return event.tableNumber === id;
+  }
+
+  private isDataValid(tableNumber, seats) {
+    const notificationService = this.injector.get(NotificationService);
+    if (isNaN(parseInt(tableNumber, 10))) {
+      notificationService.notify('Table number should be an integer!');
+      return false;
+    } else if (isNaN(parseInt(seats, 10))) {
+      notificationService.notify('The number of seats should be an integer!');
+      return false;
+    }
+
+    // Check if the table number exists already
+    if (this.tables.find(item => this.checkById(item, tableNumber))) {
+      notificationService.notify('There is already a table with that number!');
+    }
+
+    return true;
+  }
+
   addTable() {
     const formTable = {
       tableNumber: this.addTableFormGroup.get('tableNumber').value,
@@ -58,7 +80,10 @@ export class AddTableComponent implements OnInit {
     if (formTable.tableNumber === '' || formTable.seats === '') {
       const notificationService = this.injector.get(NotificationService);
       notificationService.notify('Fields not filled!');
-    } else {
+      return;
+    }
+
+    if (this.isDataValid(formTable.tableNumber, formTable.seats)) {
       const table = new Table(null,
         formTable.tableNumber,
         formTable.seats,
@@ -85,14 +110,16 @@ export class AddTableComponent implements OnInit {
       formTable.seats = this.data.table.seats;
     }
 
-    const table = new Table(this.data.table.id,
-      formTable.tableNumber,
-      formTable.seats,
-      new Restaurant(localStorage.getItem('restaurantUUID'), localStorage.getItem('restaurantName'))
-    );
+    if (this.isDataValid(formTable.tableNumber, formTable.seats)) {
+      const table = new Table(this.data.table.id,
+        formTable.tableNumber,
+        formTable.seats,
+        new Restaurant(localStorage.getItem('restaurantUUID'), localStorage.getItem('restaurantName'))
+      );
 
-    this.tableService.editTable(table).subscribe(item => {
-      this.dialogRef.close(item);
-    });
+      this.tableService.editTable(table).subscribe(item => {
+        this.dialogRef.close(item);
+      });
+    }
   }
 }
