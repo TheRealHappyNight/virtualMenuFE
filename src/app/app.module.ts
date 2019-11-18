@@ -48,6 +48,8 @@ import {CategoryComponent} from './category/category.component';
 import {AddCategoryComponent} from './add-category/add-category.component';
 import { AddTableComponent } from './add-table/add-table.component';
 import { EditAdminPageComponent } from './edit-admin-page/edit-admin-page.component';
+import {httpInterceptorProviders} from './auth/auth-interceptor';
+import { OrderListingComponent } from './order-listing/order-listing.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +72,9 @@ import { EditAdminPageComponent } from './edit-admin-page/edit-admin-page.compon
     CategoryComponent,
     AddCategoryComponent,
     AddTableComponent,
-    EditAdminPageComponent
+    EditAdminPageComponent,
+    AddCategoryComponent,
+    OrderListingComponent
   ],
   imports: [
     BrowserModule,
@@ -113,11 +117,12 @@ import { EditAdminPageComponent } from './edit-admin-page/edit-admin-page.compon
     }),
     MatTabsModule,
   ],
-  // providers: [httpInterceptorProviders,
-  //   {
-  //     provide: ErrorHandler,
-  //     useClass: AuthErrorHandler
-  //   }],
+  providers: [httpInterceptorProviders,
+    // {
+    //   provide: ErrorHandler,
+    //   useClass: AuthErrorHandler
+    // }
+    ],
   bootstrap: [AppComponent],
   entryComponents: [AddProductComponent, AddCategoryComponent, AddTableComponent]
 })
