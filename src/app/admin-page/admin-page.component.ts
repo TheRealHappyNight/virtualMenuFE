@@ -8,7 +8,7 @@ import {AuthService} from '../auth/auth.service';
 })
 export class AdminPageComponent implements OnInit {
 
-  selectedTab = 0;
+  selectedTab = 1;
 
   constructor(private authService: AuthService) {
 

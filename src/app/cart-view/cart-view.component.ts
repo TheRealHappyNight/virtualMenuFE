@@ -50,7 +50,7 @@ export class CartViewComponent implements OnInit {
         order.orderedItems.push(new OrderedItem(item.id, item.quantity));
     });
     this.customCartService.addOrder(order).subscribe(response => {
-      console.log(response);
+      // console.log(response);
     });
     // console.log(order);
   }
