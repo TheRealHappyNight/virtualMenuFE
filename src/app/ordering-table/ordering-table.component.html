@@ -1,0 +1,23 @@
+<mat-card *ngIf="isEditingConfiguration">
+  <h4>Table No.: {{table.tableNumber}}</h4>
+  <qrcode [level]="'M'" [qrdata]="tableURL" [size]="256"></qrcode>
+  <h4>Seats: {{table.seats}}</h4>
+  <h4>URL: <a [href]="tableURL">{{tableURL}}</a></h4>
+  <button (click)="editTable(table)" mat-raised-button>Modify table</button>
+  <button (click)="deleteTable(table)" mat-raised-button>Delete table</button>
+</mat-card>
+
+<div *ngIf="!isEditingConfiguration">
+  <mat-card [ngClass]="table.reserved? 'reserved': 'available'">
+    <h4>Table No.: {{table.tableNumber}}</h4>
+    <qrcode [level]="'M'" [qrdata]="tableURL" [size]="256"></qrcode>
+    <h4>Seats: {{table.seats}}</h4>
+    <h4>URL: <a [href]="tableURL">{{tableURL}}</a></h4>
+  </mat-card>
+</div>
+
+<div *ngIf="false" class="print" id="download">
+  <qrcode [level]="'M'" [qrdata]="tableURL" [size]="256"></qrcode>
+  <p>If it doesn't work use this link</p>
+  <h4>URL: <a [href]="tableURL">{{tableURL}}</a></h4>
+</div>

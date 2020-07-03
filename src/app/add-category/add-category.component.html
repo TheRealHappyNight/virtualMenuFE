@@ -1,0 +1,20 @@
+<form [formGroup]="addCategoryFormGroup">
+  <mat-form-field class="centerForms">
+    <input matInput formControlName="name" placeholder="Choose a name">
+    <mat-error *ngIf="name.invalid">The name is required!</mat-error>
+  </mat-form-field>
+  <mat-form-field class="centerForms">
+    <input matInput formControlName="description" placeholder="Choose a description">
+    <mat-error *ngIf="description.invalid">The description is required!</mat-error>
+  </mat-form-field>
+
+  <button *ngIf="!data.isEditing"
+          mat-raised-button type="submit" color="primary" class="centerForms"
+          (click)="addCategory()">Add
+  </button>
+
+  <button *ngIf="data.isEditing"
+          mat-raised-button type="submit" color="primary" class="centerForms"
+          (click)="editCategory()">Save Changes
+  </button>
+</form>

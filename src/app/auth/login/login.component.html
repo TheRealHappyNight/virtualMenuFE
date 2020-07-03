@@ -1,0 +1,24 @@
+<mat-card class="centerElement">
+  <form [formGroup]="loginFormGroup">
+    <mat-form-field class="centerElement">
+      <input matInput formControlName="username" placeholder="Username" autofocus>
+      <mat-error *ngIf="username.invalid">The username is required!</mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field class="centerElement pwElement">
+      <input matInput type="password" formControlName="password" placeholder="Password">
+      <mat-error *ngIf="password.invalid">The password is required!</mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button type="submit" color="primary" class="centerElement"
+            (click)="login()">
+      Login
+    </button>
+  </form>
+  <div class="signupElement"><p>Don't have an account?</p>
+    <a mat-raised-button href="signup" color="accent">Sign Up</a>
+  </div>
+</mat-card>
+
+

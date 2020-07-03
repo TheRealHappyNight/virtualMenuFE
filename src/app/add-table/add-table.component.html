@@ -1,0 +1,20 @@
+<form [formGroup]="addTableFormGroup">
+  <mat-form-field class="centerForms">
+    <input matInput formControlName="tableNumber" placeholder="Enter table number">
+    <mat-error *ngIf="tableNumber.invalid">The table number is required!</mat-error>
+  </mat-form-field>
+  <mat-form-field class="centerForms">
+    <input matInput formControlName="seats" placeholder="Enter the number of seats">
+    <mat-error *ngIf="seats.invalid">The seats number is required!</mat-error>
+  </mat-form-field>
+
+  <button *ngIf="!data.isEditing"
+          mat-raised-button type="submit" color="primary" class="centerForms"
+          (click)="addTable()">Add
+  </button>
+
+  <button *ngIf="data.isEditing"
+          mat-raised-button type="submit" color="primary" class="centerForms"
+          (click)="editTable()">Save Changes
+  </button>
+</form>

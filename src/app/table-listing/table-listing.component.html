@@ -1,0 +1,14 @@
+<div class="flex-container" *ngIf="!authService.isTokenExpired()">
+  <div *ngIf="isEditingConfig">
+    <app-ordering-table *ngFor="let table of tables"
+                        [table]="table"
+                        (tableEdited)="editTable($event)"
+                        (tableDelete)="deleteTable($event)"
+                        [isEditingConfiguration]=isEditingConfig></app-ordering-table>
+    <button mat-raised-button (click)="addTable()">Add table</button>
+  </div>
+  <div *ngIf="!isEditingConfig">
+    <app-ordering-table *ngFor="let table of tables" [isEditingConfiguration]=isEditingConfig
+                        [table]="table"></app-ordering-table>
+  </div>
+</div>

@@ -26,7 +26,9 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/blueimp-canvas-to-blob/js/canvas-to-blob.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -120,6 +122,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "virtualMenuFE"
+    }
+  },
+  "defaultProject": "virtualMenuFE",
+  "cli": {
+    "analytics": "2a009dfd-ccfe-453d-a209-0a2346fb1284"
+  }
 }

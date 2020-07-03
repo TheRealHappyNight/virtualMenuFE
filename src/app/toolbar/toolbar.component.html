@@ -1,0 +1,26 @@
+<mat-toolbar color="primary" class="toolbar">
+  <button mat-button
+          id="menuButton"
+          (click)="enterMenu()">
+    MENU
+  </button>
+
+  <button mat-button
+        id="title"
+        (click)="enterMainPage()">
+      {{title}}
+    </button>
+
+  <button mat-button
+          class="floatRight"
+          id="shoppingCartButton"
+          (click)="enterShoppingCart()">
+    View cart: {{displayPrice()}}
+  </button>
+
+  <button mat-button *ngIf="tokenStorage.getToken()"
+          id = "logout"
+          (click)="logout()">
+    Log Out
+  </button>
+</mat-toolbar>
