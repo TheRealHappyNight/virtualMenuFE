@@ -122,6 +122,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "virtualMenuFE"
+    }
+  },
+  "defaultProject": "virtualMenuFE",
+  "cli": {
+    "analytics": "2a009dfd-ccfe-453d-a209-0a2346fb1284"
+  }
 }
