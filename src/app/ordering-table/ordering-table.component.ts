@@ -37,9 +37,9 @@ export class OrderingTableComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(editedTable => {
-      if (editedTable) {
-        this.tableEdited.emit(editedTable);
-      }
+      if (!editedTable) { return; }
+
+      this.tableEdited.emit(editedTable);
     });
   }
 

@@ -1,11 +1,11 @@
 <div *ngIf="authService.isAdmin(); else loggedOut">
+  <app-loading-spinner *ngIf="products.length < 1 && currentUserInfo.token"
+                       [isLoading]="isLoading"></app-loading-spinner>
   <button mat-raised-button [routerLink]="['/admin']">
     Done
   </button>
   <mat-tab-group [(selectedIndex)]="selectedTab">
     <mat-tab label="Products">
-      <app-loading-spinner *ngIf="products.length < 1 && currentUserInfo.token"
-                           [isLoading]="isLoading"></app-loading-spinner>
       <button mat-mini-fab (click)="addProduct()" class="floatRight, products">+</button>
       <mat-grid-list cols="4">
         <mat-grid-tile *ngFor="let product of products">

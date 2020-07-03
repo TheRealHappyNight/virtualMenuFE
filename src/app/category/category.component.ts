@@ -74,11 +74,10 @@ export class CategoryComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(editedProduct => {
-        if (editedProduct) {
-          this.categoryEdited.emit(editedProduct);
-        }
-      }
-    );
+      if (!editedProduct) { return; }
+
+      this.categoryEdited.emit(editedProduct);
+      });
   }
 
   selectImage() {

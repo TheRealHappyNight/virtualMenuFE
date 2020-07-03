@@ -76,9 +76,9 @@ export class ProductComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(editedProduct => {
-        if (editedProduct) {
-          this.productEdited.emit(editedProduct);
-        }
+        if (!editedProduct) { return; }
+
+        this.productEdited.emit(editedProduct);
       }
     );
   }

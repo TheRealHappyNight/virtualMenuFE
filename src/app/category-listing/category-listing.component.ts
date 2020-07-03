@@ -45,12 +45,12 @@ export class CategoryListingComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(item => {
-      if (item) {
-        this.categories.push(item);
-        const index = this.categories.findIndex(i => this.checkById(item, i.id));
-        this.categories.splice(index, 1, item);
-        this.categories.sort((a, b) => a.name.localeCompare(b.name));
-      }
+      if (!item) { return; }
+
+      this.categories.push(item);
+      const index = this.categories.findIndex(i => this.checkById(item, i.id));
+      this.categories.splice(index, 1, item);
+      this.categories.sort((a, b) => a.name.localeCompare(b.name));
     });
   }
 

@@ -20,7 +20,7 @@ export class EditAdminPageComponent implements OnInit {
   products: Product[] = [];
   categories: Category[] = [];
   isLoading = true;
-  selectedTab = 2;
+  selectedTab = 0;
 
   constructor(private productService: ProductService,
               private categoryService: CategoryService,
@@ -68,12 +68,12 @@ export class EditAdminPageComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.products.push(result);
-        const index = this.products.findIndex(i => this.checkById(result, i.id));
-        this.products.splice(index, 1, result);
-        this.products.sort((a, b) => a.name.localeCompare(b.name));
-      }
+      if (!result) { return; }
+
+      this.products.push(result);
+      const index = this.products.findIndex(i => this.checkById(result, i.id));
+      this.products.splice(index, 1, result);
+      this.products.sort((a, b) => a.name.localeCompare(b.name));
     });
   }
 

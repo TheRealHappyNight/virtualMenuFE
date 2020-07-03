@@ -104,7 +104,7 @@ export class AddCategoryComponent implements OnInit {
     // Check if the name already exists
     // eroare nu merge
     if (!this.data.isEditing) {
-      if (this.categories.findIndex(item => this.checkByName(this.data.category, item.name))) {
+      if (this.categories.findIndex(item => this.checkByName(this.data.category, item.name)) !== -1) {
         notificationService.notify('This category already exists! Choose a different name.');
         return false;
       }

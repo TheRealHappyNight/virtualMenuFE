@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
@@ -50,6 +50,7 @@ import { AddTableComponent } from './add-table/add-table.component';
 import { EditAdminPageComponent } from './edit-admin-page/edit-admin-page.component';
 import {httpInterceptorProviders} from './auth/auth-interceptor';
 import { OrderListingComponent } from './order-listing/order-listing.component';
+import {GeneralErrorHandler} from "./auth/GeneralErrorHandler";
 
 @NgModule({
   declarations: [
@@ -118,10 +119,10 @@ import { OrderListingComponent } from './order-listing/order-listing.component';
     MatTabsModule,
   ],
   providers: [httpInterceptorProviders,
-    // {
-    //   provide: ErrorHandler,
-    //   useClass: AuthErrorHandler
-    // }
+    {
+      provide: ErrorHandler,
+      useClass: GeneralErrorHandler
+    }
     ],
   bootstrap: [AppComponent],
   entryComponents: [AddProductComponent, AddCategoryComponent, AddTableComponent]

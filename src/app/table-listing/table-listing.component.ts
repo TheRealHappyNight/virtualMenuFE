@@ -37,6 +37,8 @@ export class TableListingComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(item => {
+      if (!item) { return; }
+
       this.tables.push(item);
       const index = this.tables.findIndex(i => this.checkById(item, i.id));
       this.tables.splice(index, 1, item);

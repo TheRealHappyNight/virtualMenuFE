@@ -155,8 +155,6 @@ export class AddProductComponent implements OnInit {
 
 
     // Check if the name product doesn't already exist
-    // eroare nu merge
-    console.log(products.findIndex(item => this.checkByName(this.data.product, item)));
     if (products.findIndex(item => this.checkByName(this.data.product, item)) !== -1) {
       notificationService.notify('The product already exists!');
       return false;

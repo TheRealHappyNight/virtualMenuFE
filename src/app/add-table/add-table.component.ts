@@ -92,7 +92,11 @@ export class AddTableComponent implements OnInit {
 
       this.tableService.addTable(table).subscribe(item => {
         this.dialogRef.close(item);
-      });
+      },
+        error => {
+          const notificationService = this.injector.get(NotificationService);
+          notificationService.notify('Table number not unique!');
+        });
     }
   }
 
@@ -119,7 +123,11 @@ export class AddTableComponent implements OnInit {
 
       this.tableService.editTable(table).subscribe(item => {
         this.dialogRef.close(item);
-      });
+      },
+        error => {
+          const notificationService = this.injector.get(NotificationService);
+          notificationService.notify('Table number not unique!');
+        });
     }
   }
 }
