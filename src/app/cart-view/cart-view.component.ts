@@ -14,7 +14,7 @@ export class CartViewComponent implements OnInit {
   displayedColumns: string[] = ['name', 'price', 'quantity'];
 
   constructor(private cartService: CartService<BaseCartItem>,
-              private customCartService: CustomCartService) {
+              public customCartService: CustomCartService) {
   }
 
 

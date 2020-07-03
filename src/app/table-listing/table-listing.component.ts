@@ -16,7 +16,7 @@ export class TableListingComponent implements OnInit {
 
   constructor(private tableService: TableService,
               private dialog: MatDialog,
-              private authService: AuthService) {
+              public authService: AuthService) {
   }
 
   ngOnInit() {

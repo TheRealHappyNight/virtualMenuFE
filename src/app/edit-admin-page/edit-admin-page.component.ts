@@ -26,7 +26,7 @@ export class EditAdminPageComponent implements OnInit {
               private categoryService: CategoryService,
               private token: TokenStorageService,
               private dialog: MatDialog,
-              private authService: AuthService) {
+              public authService: AuthService) {
   }
 
   ngOnInit() {

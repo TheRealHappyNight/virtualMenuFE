@@ -18,8 +18,7 @@ export class CategoryListingComponent implements OnInit {
 
   constructor(private categoryService: CategoryService,
               private dialog: MatDialog,
-              private authService: AuthService) {
-}
+              public authService: AuthService) {}
 
   ngOnInit() {
     this.getCategories();

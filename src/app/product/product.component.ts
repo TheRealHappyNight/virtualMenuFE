@@ -91,7 +91,7 @@ export class ProductComponent implements OnInit {
     this.productDelete.emit(product);
   }
 
-  private createCartItem() {
+  public createCartItem() {
     const item = new BaseCartItem();
     item.setId(this.product.id);
     item.setName(this.product.name);

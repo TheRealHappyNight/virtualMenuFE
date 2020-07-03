@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   roles: string[] = [];
   private loginInfo: AuthLoginInfo;
 
-  constructor(private authService: AuthService,
+  constructor(public authService: AuthService,
               private tokenStorage: TokenStorageService,
               private fb: FormBuilder,
               private router: Router,

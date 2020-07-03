@@ -10,7 +10,7 @@ export class AdminPageComponent implements OnInit {
 
   selectedTab = 0;
 
-  constructor(private authService: AuthService) {
+  constructor(public authService: AuthService) {
 
   }
 

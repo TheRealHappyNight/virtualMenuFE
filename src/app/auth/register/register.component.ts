@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
   isSignUpFailed = false;
   errorMessage = '';
 
-  constructor(private authService: AuthService,
+  constructor(public authService: AuthService,
               private fb: FormBuilder,
               private injector: Injector,
               private router: Router) {

@@ -12,7 +12,7 @@ import {AppUtilities} from '../services/AppUtilities';
 export class ToolbarComponent implements OnInit {
   title: string;
 
-  constructor(private tokenStorage: TokenStorageService,
+  constructor(public tokenStorage: TokenStorageService,
               private router: Router,
               private cartService: CustomCartService) { }
 
