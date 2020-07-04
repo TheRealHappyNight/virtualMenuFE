@@ -33,6 +33,7 @@ export class ImageService {
   public getProductImage(product: Product) {
     return this.http.get(environment.backendUrl + '/product/' + product.id + '/picture', {responseType: 'blob'})
       .map(blob => {
+        if (blob.size === 0) {return null; }
         const urlCreator = window.URL;
         return this.sanitizer.bypassSecurityTrustUrl(urlCreator.createObjectURL(blob));
       });

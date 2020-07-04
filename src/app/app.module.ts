@@ -50,7 +50,7 @@ import { AddTableComponent } from './add-table/add-table.component';
 import { EditAdminPageComponent } from './edit-admin-page/edit-admin-page.component';
 import {httpInterceptorProviders} from './auth/auth-interceptor';
 import { OrderListingComponent } from './order-listing/order-listing.component';
-import {GeneralErrorHandler} from "./auth/GeneralErrorHandler";
+import {GeneralErrorHandler} from './auth/GeneralErrorHandler';
 
 @NgModule({
   declarations: [

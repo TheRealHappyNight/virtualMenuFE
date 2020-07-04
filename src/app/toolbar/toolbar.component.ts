@@ -3,6 +3,8 @@ import {TokenStorageService} from '../auth/token-storage.service';
 import {Router} from '@angular/router';
 import {CustomCartService} from '../services/custom-cart.service';
 import {AppUtilities} from '../services/AppUtilities';
+import {RestaurantService} from '../services/restaurant.service';
+import {Restaurant} from '../model/Table';
 
 @Component({
   selector: 'app-toolbar',
@@ -10,14 +12,15 @@ import {AppUtilities} from '../services/AppUtilities';
   styleUrls: ['./toolbar.component.css']
 })
 export class ToolbarComponent implements OnInit {
-  title: string;
+  restaurant: Restaurant;
 
   constructor(public tokenStorage: TokenStorageService,
               private router: Router,
-              private cartService: CustomCartService) { }
+              private cartService: CustomCartService,
+              private restaurantService: RestaurantService) { }
 
   ngOnInit() {
-    this.title = 'Virtual menu';
+    this.restaurant = new Restaurant(localStorage.getItem('restaurantUUID'), localStorage.getItem('restaurantName'));
   }
 
   enterMenu(): void {
