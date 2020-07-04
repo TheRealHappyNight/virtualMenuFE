@@ -42,6 +42,7 @@ export class ImageService {
   public getCategoryImage(category: Category) {
     return this.http.get(environment.backendUrl + '/category/' + category.id + '/picture', {responseType: 'blob'})
       .map(blob => {
+        if (blob.size === 0) {return null; }
         const urlCreator = window.URL;
         return this.sanitizer.bypassSecurityTrustUrl(urlCreator.createObjectURL(blob));
       });
