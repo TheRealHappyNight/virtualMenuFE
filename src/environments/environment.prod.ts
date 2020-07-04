@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  backendUrl: 'https://virtualmenu.herokuapp.com',
+  backendUrl: 'https://virtualmenube.herokuapp.com',
   testRestaurant: 'phoenix'
 };
