@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  backendUrl: 'https://virtualmenu.herokuapp.com',
+  backendUrl: 'http://localhost:8080',
   testRestaurant: 'phoenix'
 };
 

@@ -3,6 +3,7 @@
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title>{{product.name}}</mat-card-title>
+      <mat-card-subtitle>{{product.description}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
       <app-picture *ngIf="product.image" [image]="product.image"></app-picture>

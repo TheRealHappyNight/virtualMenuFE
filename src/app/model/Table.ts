@@ -1,7 +1,7 @@
 export class Restaurant {
-  constructor(item: string, item2: string) {
-    this.uuid = item;
-    this.name = item2;
+  constructor(uuid: string, name: string) {
+    this.uuid = uuid;
+    this.name = name;
   }
 
   uuid: string;
