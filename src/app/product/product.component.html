@@ -1,13 +1,13 @@
 <add-to-cart [item]="createCartItem()" [custom]="true">
   <mat-card [ngClass]="product.active? 'activeProduct': 'outOfStock'">
     <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>{{product.name}}</mat-card-title>
-      <mat-card-subtitle>{{product.description}}</mat-card-subtitle>
+      <mat-card-title class="title">{{product.name}}</mat-card-title>
+      <mat-card-subtitle class="title">{{product.description}}</mat-card-subtitle>
+      <app-picture [image]="product.image"></app-picture>
     </mat-card-header>
-    <mat-card-content>
-      <app-picture *ngIf="product.image" [image]="product.image"></app-picture>
-    </mat-card-content>
+<!--    <mat-card-content>-->
+<!--      Ingrediente: ciocolata, lapte-->
+<!--    </mat-card-content>-->
     <mat-card-actions *ngIf="isAdmin">
       <button mat-raised-button id="editProduct"
 
@@ -27,5 +27,6 @@
       </div>
       <button mat-mini-fab (click)="deleteProduct(product)">-</button>
     </mat-card-actions>
+    <div class="amount centerElement">{{displayPrice()}} RON</div>
   </mat-card>
 </add-to-cart>

@@ -1,1 +1,2 @@
-<img [src]="image" class="image" />
+<img *ngIf="image" [src]="image" class="image" />
+<img *ngIf="!image" src="./../assets/images/output-onlinepngtools.png" class="image" />

@@ -1,9 +1,9 @@
-<mat-toolbar color="primary" class="toolbar">
-  <button mat-button
-          id="menuButton"
-          (click)="enterMenu()">
-    <mat-icon>menu</mat-icon>
-  </button>
+<mat-toolbar color="accent" class="toolbar">
+<!--  <button mat-button-->
+<!--          id="menuButton"-->
+<!--          (click)="enterMenu()">-->
+<!--    <mat-icon>menu</mat-icon>-->
+<!--  </button>-->
 
   <button mat-button
           id="title"
@@ -17,7 +17,7 @@
           id="shoppingCartButton"
           (click)="enterShoppingCart()">
     <mat-icon>shopping_cart</mat-icon>
-    {{displayPrice()}}
+    <div class="money">{{displayPrice()}} RON</div>
   </button>
 
   <button mat-button *ngIf="tokenStorage.getToken()"

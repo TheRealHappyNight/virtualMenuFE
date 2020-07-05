@@ -6,6 +6,7 @@ import {BaseCartItem, CartService} from 'ng-shopping-cart';
 import {ProductDTO} from '../DTO/ProductDTO';
 import {AddProductComponent} from '../add-product/add-product.component';
 import {MatDialog} from '@angular/material';
+import {AppUtilities} from '../services/AppUtilities';
 
 class ImageSnippet {
   pending = false;
@@ -113,5 +114,9 @@ export class ProductComponent implements OnInit {
     this.selectedFile.pending = false;
     this.selectedFile.status = 'fail';
     this.selectedFile.src = '';
+  }
+
+  displayPrice() {
+    return AppUtilities.displayPrice(this.product.price);
   }
 }
