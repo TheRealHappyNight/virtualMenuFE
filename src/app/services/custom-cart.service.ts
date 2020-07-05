@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {BaseCartItem, CartService} from 'ng-shopping-cart';
 import {HttpClient} from '@angular/common/http';
-import {Order} from '../model/order';
+import {OrderDTO} from '../DTO/OrderDTO';
 import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs';
 
@@ -19,7 +19,8 @@ export class CustomCartService {
   public getTotalCost() {
     return this.items.map(t => t.price * t.quantity).reduce((acc, value) => acc + value, 0);
   }
-  addOrder(order: Order): Observable<object> {
+  addOrder(order: OrderDTO): Observable<object> {
+    console.log(order);
     return this.http.post(environment.backendUrl + '/order', order);
   }
 }

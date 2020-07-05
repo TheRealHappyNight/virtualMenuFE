@@ -1,1 +1,5 @@
-<p>order-listing works!</p>
+<mat-grid-list cols="1">
+  <mat-grid-tile *ngFor="let order of orders">
+    <app-order [order]="order"></app-order>
+  </mat-grid-tile>
+</mat-grid-list>

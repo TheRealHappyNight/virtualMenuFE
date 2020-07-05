@@ -46,11 +46,12 @@ import {QRCodeModule} from 'angularx-qrcode';
 import {Ng2ImgMaxModule} from 'ng2-img-max';
 import {CategoryComponent} from './category/category.component';
 import {AddCategoryComponent} from './add-category/add-category.component';
-import { AddTableComponent } from './add-table/add-table.component';
-import { EditAdminPageComponent } from './edit-admin-page/edit-admin-page.component';
+import {AddTableComponent} from './add-table/add-table.component';
+import {EditAdminPageComponent} from './edit-admin-page/edit-admin-page.component';
 import {httpInterceptorProviders} from './auth/auth-interceptor';
-import { OrderListingComponent } from './order-listing/order-listing.component';
-import {GeneralErrorHandler} from "./auth/GeneralErrorHandler";
+import {OrderListingComponent} from './order-listing/order-listing.component';
+import {GeneralErrorHandler} from './auth/GeneralErrorHandler';
+import {OrderComponent} from './order/order.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import {GeneralErrorHandler} from "./auth/GeneralErrorHandler";
     AddTableComponent,
     EditAdminPageComponent,
     AddCategoryComponent,
-    OrderListingComponent
+    OrderListingComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,
@@ -123,7 +125,7 @@ import {GeneralErrorHandler} from "./auth/GeneralErrorHandler";
       provide: ErrorHandler,
       useClass: GeneralErrorHandler
     }
-    ],
+  ],
   bootstrap: [AppComponent],
   entryComponents: [AddProductComponent, AddCategoryComponent, AddTableComponent]
 })

@@ -1,4 +1,4 @@
-<add-to-cart [item]="createCartItem()" [custom]="true">
+<add-to-cart [item]="createCartItem()"  *ngIf="!authService.isAdmin()" [custom]="true">
   <mat-card [ngClass]="product.active? 'activeProduct': 'outOfStock'">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
@@ -7,24 +7,33 @@
     <mat-card-content>
       <app-picture *ngIf="product.image" [image]="product.image"></app-picture>
     </mat-card-content>
-    <mat-card-actions *ngIf="isAdmin">
-      <button mat-raised-button id="editProduct"
-
-              (click)="editProduct(product)">
-        Edit
-      </button>
-      <button mat-button *ngIf="product.active" (click)="switchState()">OutOfStock</button>
-      <button mat-button *ngIf="!product.active" (click)="switchState()">InStock</button>
-      <div class="mat-card inputContainer">
-        <input #imageInput
-               id="imageInput"
-               style="opacity: 0%"
-               class="inputElement"
-               type="file"
-               accept="image/*"
-               (change)="processFile(imageInput)">
-      </div>
-      <button mat-mini-fab (click)="deleteProduct(product)">-</button>
-    </mat-card-actions>
   </mat-card>
 </add-to-cart>
+<mat-card *ngIf="authService.isAdmin()" [ngClass]="product.active? 'activeProduct': 'outOfStock'">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{product.name}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <app-picture *ngIf="product.image" [image]="product.image"></app-picture>
+  </mat-card-content>
+  <mat-card-actions *ngIf="isAdmin">
+    <button mat-raised-button id="editProduct"
+
+            (click)="editProduct(product)">
+      Edit
+    </button>
+    <button mat-button *ngIf="product.active" (click)="switchState()">OutOfStock</button>
+    <button mat-button *ngIf="!product.active" (click)="switchState()">InStock</button>
+    <div class="mat-card inputContainer">
+      <input #imageInput
+             id="imageInput"
+             style="opacity: 0%"
+             class="inputElement"
+             type="file"
+             accept="image/*"
+             (change)="processFile(imageInput)">
+    </div>
+    <button mat-mini-fab (click)="deleteProduct(product)">-</button>
+  </mat-card-actions>
+</mat-card>

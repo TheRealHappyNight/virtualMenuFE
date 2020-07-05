@@ -1,0 +1,11 @@
+<mat-card>
+  <mat-card-title>{{order.orderingTable.id}}</mat-card-title>
+  <mat-card-header>
+    status: {{order.orderStatus}}
+    data: {{order.orderDate}}
+  </mat-card-header>
+  <mat-card-content *ngFor="let orderItem of order.orderToProductRelations">
+    Id produs: {{orderItem.product.name}}
+    Cantitate: {{orderItem.quantity}}
+  </mat-card-content>
+</mat-card>

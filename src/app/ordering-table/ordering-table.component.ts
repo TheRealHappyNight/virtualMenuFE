@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Table} from '../model/Table';
-import {TableDTO} from '../DTO/tableDTO';
+import {TableDTO} from '../DTO/TableDTO';
 import {AddTableComponent} from '../add-table/add-table.component';
 import {MatDialog} from '@angular/material';
 

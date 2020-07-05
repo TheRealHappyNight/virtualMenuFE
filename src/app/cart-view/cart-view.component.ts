@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {BaseCartItem, CartService} from 'ng-shopping-cart';
 import {CustomCartService} from '../services/custom-cart.service';
 import {AppUtilities} from '../services/AppUtilities';
-import {Order, OrderedItem} from '../model/order';
+import {OrderDTO, OrderedItem} from '../DTO/OrderDTO';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'app-cart-view',
@@ -44,8 +45,9 @@ export class CartViewComponent implements OnInit {
   }
 
   saveOrder() {
-    const order = new Order();
+    const order = new OrderDTO();
     order.tableId = +localStorage.getItem('tableId');
+    order.restaurantUUID = localStorage.getItem('restaurantUUID');
     this.items.forEach(item => {
         order.orderedItems.push(new OrderedItem(item.id, item.quantity));
     });

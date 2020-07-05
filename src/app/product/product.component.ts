@@ -6,6 +6,7 @@ import {BaseCartItem, CartService} from 'ng-shopping-cart';
 import {ProductDTO} from '../DTO/ProductDTO';
 import {AddProductComponent} from '../add-product/add-product.component';
 import {MatDialog} from '@angular/material';
+import {AuthService} from '../auth/auth.service';
 
 class ImageSnippet {
   pending = false;
@@ -30,7 +31,8 @@ export class ProductComponent implements OnInit {
   constructor(private productService: ProductService,
               private imageService: ImageService,
               private cartService: CartService<BaseCartItem>,
-              private dialog: MatDialog) {
+              private dialog: MatDialog,
+              public authService: AuthService) {
   }
 
   ngOnInit() {
@@ -76,7 +78,9 @@ export class ProductComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(editedProduct => {
-        if (!editedProduct) { return; }
+        if (!editedProduct) {
+          return;
+        }
 
         this.productEdited.emit(editedProduct);
       }

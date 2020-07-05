@@ -3,7 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Restaurant, Table} from '../model/Table';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {TableService} from '../services/table.service';
-import {TableDTO} from '../DTO/tableDTO';
+import {TableDTO} from '../DTO/TableDTO';
 import {environment} from '../../environments/environment';
 import {NotificationService} from '../services/notification.service';
 

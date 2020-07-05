@@ -16,6 +16,10 @@ export class ProductService {
     return this.httpClient.get<Product[]>(environment.backendUrl + '/restaurant/' + selectedRestaurant + '/product');
   }
 
+  getProductByProductIdAndRestaurant(productId: number, selectedRestaurant: string) {
+    return this.httpClient.get<Product>(environment.backendUrl + '/restaurant/' + selectedRestaurant + '/product/' + productId);
+  }
+
   switchState(product: Product): Observable<Product> {
     const httpParams = new HttpParams().set('active', String(!product.active));
     return this.httpClient.put<Product>(environment.backendUrl + '/product/' + product.id, null, {params: httpParams});
